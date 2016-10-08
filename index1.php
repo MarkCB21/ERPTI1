@@ -12,9 +12,22 @@
  			<fieldset>
  				<legend>productos</legend>
  				<label for="proveedor">Proveedor</label>
- 				<select id="proveedor" name="proveedor">
+ 					<?php
+ 						$bd = mysql_connect("localhost","root","");
+ 						mysql_select_db("empresa", $bd);
 
+ 						$Prove = "SELECT Nombre_Compañia FROM proveedores";
+ 						$value = mysqli_query($Prove,$bd);
+ 					?>
+ 				<select id="proveedor" name="proveedor">
+ 					<?php
+ 						while ($elegir= mysqli_fetch_assoc($value)) 
+ 						{
+		 					echo "Obtenido:'.$elegir["Nombre_Compañia"]";
+ 						}
+ 					?>
  				</select>
+ 				<br><br>
  				<label for="Nombre">Nombre</label>
  				<input type="text" name="Nombre" value=""/>
  				<br><br>
