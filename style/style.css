@@ -1,0 +1,92 @@
+form
+{
+	margin:5% 5%;
+}
+
+#Orden_De_Compra
+{
+	width: 350px;
+}
+
+#Aniadir_Proveedor
+{
+	width: 350px;
+}
+
+#Agregar_Producto
+{
+	width: 350px;
+}
+
+#Modificar_Proveedores
+{
+	width: 400px;
+}
+
+form fieldset
+{
+	border-style: inset;
+	border-width: 1px;
+	border-color: #00AAFF;
+	border-radius: 10px;
+}
+
+form fieldset legend
+{
+	border-style: outset;
+	border-width: 1px;
+	border-color: #00AAFF;
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+.form-label
+{
+	width: 5em;
+	float: left;
+	display: block;
+	margin: .5em;
+	text-align: right;
+	font-weight: bolder;
+}
+
+.form-label-large
+{
+	width: 10em;
+	float: left;
+	display: block;
+	margin: .5em;
+	text-align: right;
+	font-weight: bolder;
+}
+
+.form-control
+{
+	border-style: inset;
+	border-width: 1px;
+	border-radius: 5px;
+	border-color: #004488;
+	padding:.2em;
+	display: block;
+	margin: 1em ;
+	padding: 5px 10px 5px 10px;
+}
+
+.btn
+{
+	border-style: outset;
+	border-color: #004488;
+	border-width: 1px;
+	border-radius: 5px;
+	background-color: #0088DD;
+	padding: 5px 10px 5px 10px;
+	margin: .5em 1em;
+}
+
+.btn:active
+{
+	border-style: inset;
+	border-color: #DDDDDD;
+	border-radius: 5px;
+	background-color: #BBDDFF;
+}
