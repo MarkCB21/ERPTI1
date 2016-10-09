@@ -83,7 +83,12 @@ form fieldset legend
 	margin: .5em 1em;
 }
 
-.btn:active
+.btn:hover
+{
+	background-color: #00AAEE;
+}
+
+.btn:hover:active
 {
 	border-style: inset;
 	border-color: #DDDDDD;
