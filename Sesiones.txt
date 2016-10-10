@@ -1,0 +1,44 @@
+Viernes 9 de septiembre :
+	Primera junta con todos los estudiantes de Taller de integración I definicion de lenguajes "javascript" "nodejs" "mongodb" explicación basica del proyecto pactación de reuniones explicación de github invitación a probar algunos ERP Open Source, Solicitud de ID de github.
+
+	Las reuniones quedaron de este modo:  
+
+	Todos: Viernes 14:00 - 15:00 
+	Inventario: Lunes 13:50 - 14:20
+	Proveedores,Caja: Martes 14:00 - 14:30
+
+	Creación de grupo de facebook para intercatuar y que compartir dudas, compartir tutoriales de nodejs y mongodb 
+
+Lunes 12 de septiembre :
+	Junta con el grupo de inventario y conversacion respecto al proyecto, informacion para la entrega de los diagramas, los tipos de diagramas y organizacion de una junta para explicarle a todos los compañeros.
+
+Martes 13 de septiembre :
+	Junta con el grupo de inventario y conversacion respecto al proyecto, informacion para la entrega de los diagramas, los tipos de diagramas y organizacion de una junta para explicarle a todos los compañeros.
+
+Jueves 15 de septiembre :
+	Se le enseña a todos lo alumnos que asistieron como funcionan los diagramas MER y diagrama de clases, se les explica bien como funcionara el proyecto, los modulos que tendra y como se repartiran el trabajo, se explica el funcionamiento Scrum y se presenta el product backlog del proyecto, se presenta la nueva integrante(lider) de proyecto "Maria Paz", se cambia el lenguajes a usarse php+javascript y mysql
+
+Viernes 16 de septiembre :
+	Suspendida
+
+Lunes 19 de septiembre :
+	Suspendida feriado
+
+Martes 20 de septiembre :
+	Junta con todos, Se le explica a todos los grupos el funcionamiento de los diagramas de clases y MER separado por modulos, se resuelven dudas respecto de los diagramas de clase y MER, se comparten los distintos archivos de Sistematización del proyecto para resolver algunas dudas.
+
+Miercoles 21 de septiembre :
+	Se le explica a cada grupo por separado Los diagramas de protocolo y diagramas modular de la aplicación.
+
+Viernes 23 de septiembre :
+	Se presenta el primer sprint y se les dan tareas para poder realizar hasta el siguiente sprint, se presentan los nuevos lideres de grupo.
+
+Lunes 26 de septiembre :
+	El grupo de inventario presenta su avance respecto a la interfaz grafica de el sistema de login, se le retroalimenta el uso de css en la interfaz.
+
+Martes 27 de septiembre :
+	Suspendida, junta con el centro de desarrollo, solicitud de base de datos de la universidad.
+
+Viernes 30 de septiembre :
+	Junta con todos para enseñarle sobre html y css, se le enseñan los atributos, etiquetas, identificación entre otros respecto de html, se les enseña el uso de css en archivos html, introduccion basica a javascript y php cambio en la estructura de los sprint, se les comparte a los lideres de grupo el sprint para que llenen las horas empleadas en el proyecto.
+Lunes 30 de septiembre :
