@@ -10,14 +10,15 @@
 define("DB_SERVER", "localhost");
 define("DB_USER", "root");
 define("DB_PASS", "");
-define("DB_NAME", "3g");
+define("DB_NAME", "erp");
 
 /**
  * Database Table Constants - these constants
  * hold the names of all the database tables used
  * in the script.
  */
-define("TBL_USERS", "users");
+define("TBL_USERS", "login_usuarios");
+define("TBL_INVENTARIO", "inventario");
 define("TBL_ACTIVE_USERS",  "active_users");
 define("TBL_ACTIVE_GUESTS", "active_guests");
 define("TBL_BANNED_USERS",  "banned_users");
@@ -29,14 +30,11 @@ define("TBL_BANNED_USERS",  "banned_users");
  * admin user level. Feel free to change the names
  * and level constants as you see fit, you may
  * also add additional level specifications.
- * Levels must be digits between 0-9.
  */
 define("ADMIN_NAME", "admin");    //1. admin conrol all
 define("GUEST_NAME", "Guest");   
-define("ADMIN_LEVEL", 9);        // 2. admin level .. control the master
-define("MASTER_LEVEL", 8);       // 3. master level .. master control the agent
-define("AGENT_LEVEL",  1);       // 4. agent level .. agent control the member
-define("AGENT_MEMBER_LEVEL", 2); // 5. agent member level .. member control his/her own account
+define("ADMIN_LEVEL", 2);        // 2. admin level .. control the master
+define("AGENT_MEMBER_LEVEL", 1); // 5. agent member level .. member control his/her own account
 define("GUEST_LEVEL", 0);        // 6. guest level .. guest only control himself
 
 /**
@@ -72,8 +70,8 @@ define("COOKIE_PATH", "/");  //Avaible in whole domain
  * sends to users, and whether to send a
  * welcome email to newly registered users.
  */
-define("EMAIL_FROM_NAME", "ARMAN G. DE CASTRO");
-define("EMAIL_FROM_ADDR", "armandecastro@gmail.com");
+define("EMAIL_FROM_NAME", "admin");
+define("EMAIL_FROM_ADDR", "admin@gmail.com");
 define("EMAIL_WELCOME", false);
 
 /**

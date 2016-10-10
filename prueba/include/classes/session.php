@@ -692,15 +692,7 @@ class Session
       return ($this->userlevel == ADMIN_LEVEL ||
               $this->username  == ADMIN_NAME);
    }
-   
-    function isMaster(){
-      return ($this->userlevel == MASTER_LEVEL);
-   }
-   
-    function isAgent(){
-      return ($this->userlevel == AGENT_LEVEL);
-	}
-   
+
     function isMember(){
       return ($this->userlevel == AGENT_MEMBER_LEVEL);
    }

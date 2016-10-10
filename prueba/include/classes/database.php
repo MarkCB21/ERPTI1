@@ -146,35 +146,17 @@ class MySQLDB
       }else{
          $ulevel = MASTER_LEVEL;
       }
-      $q = "INSERT INTO ".TBL_USERS." VALUES ('$username', '$password', '0', $ulevel, '$email', $time)";
+      $q = "INSERT INTO ".TBL_USERS." VALUES ('$username', '$password', '0', $ulevel, '$email')";
       return mysqli_query($this->connection, $q);
    }
-   
-   // add new Master
-   function addNewMaster($username, $password, $email, $parent_directory){
   
-      $time = time();
-      $ulevel = MASTER_LEVEL;   //8
-      $q = "INSERT INTO ".TBL_USERS." VALUES ('$username', '$password', '0', $ulevel, '$email', $time, '$parent_directory')";
-      return mysqli_query($this->connection, $q); 
-   }
-   
-   
-   // add new Agent
-   function addNewAgent($username, $password, $email, $parent_directory){
- 
-      $time = time();
-      $ulevel = AGENT_LEVEL;   //2
-      $q = "INSERT INTO ".TBL_USERS." VALUES ('$username', '$password', '0', $ulevel, '$email', $time, '$parent_directory')";
-      return mysqli_query($this->connection, $q); 
-   }
    
    //add new Member
-   function addNewMember($username, $password, $email, $parent_directory){
+   function addNewMember($username, $password, $email){
    
       $time = time();
       $ulevel = AGENT_MEMBER_LEVEL;
-       $q = "INSERT INTO ".TBL_USERS." VALUES ('$username', '$password', '0', $ulevel, '$email', $time, '$parent_directory')";
+       $q = "INSERT INTO ".TBL_USERS." VALUES ('$username', '$password', '0', $ulevel, '$email')";
       return mysqli_query($this->connection, $q); 
    }
    

@@ -1,5 +1,5 @@
 <?php
-
+include("include/classes/UTF-8.php");
 include("include/classes/session.php");
 
 class Process
@@ -52,7 +52,7 @@ class Process
        * by mistake and therefore is redirected.
        */
        else{
-          header("Location: main.php");
+          header("Location: index.php");
        }
    }
 
@@ -85,7 +85,7 @@ class Process
    function procLogout(){
       global $session;
       $retval = $session->logout();
-      header("Location: main.php");
+      header("Location: index.php");
    }
    
    /**
