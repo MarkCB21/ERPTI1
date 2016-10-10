@@ -49,7 +49,20 @@ transform:scale(1);
 #main{
 	width: 88%;
 	height: 100%;
-	background-image: url(img/fondo.png);
+	background-color: #4b4c9d;
+	
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	position: fixed;
+	display:inline;
+	overflow: scroll;
+	overflow-x: hidden; 
+}
+#main2{
+	width: 88%;
+	height: 100%;
+	background-color: #fff;
+	
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	position: fixed;
