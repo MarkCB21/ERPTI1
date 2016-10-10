@@ -4,16 +4,18 @@ include("include/classes/session.php");
 ?>
 
 <html>
-<title>pagina de registro</title>
+<title>Paguina de registro</title>
 <body>
 
 <?php
-
+/**
+ * The user is already logged in, not allowed to register.
+ */
 if($session->logged_in){
  
 ?>
 
-<h1>Add Member on the Group</h1>
+<h1>Add Agent on the Group </h1>
 <?php
 if($form->num_errors > 0){
    echo "<td><font size=\"2\" color=\"#ff0000\">".$form->num_errors." error(s) found</font></td>";
@@ -25,8 +27,8 @@ if($form->num_errors > 0){
 <tr><td>Password:</td><td><input type="password" name="pass" maxlength="30" value="<?php echo $form->value("pass"); ?>"></td><td><?php echo $form->error("pass"); ?></td></tr>
 <tr><td>Email:</td><td><input type="text" name="email" maxlength="50" value="<?php echo $form->value("email"); ?>"></td><td><?php echo $form->error("email"); ?></td></tr>
 <tr><td colspan="2" align="right">
-<input type="hidden" name="member_subjoin" value="1">
-<input type="submit" value="Add Member!"></td></tr>
+<input type="hidden" name="agent_subjoin" value="1">
+<input type="submit" value="Add Agent!"></td></tr>
 <tr><td colspan="2" align="left"><a href="main.php">Back to Main</a></td></tr>
 </table>
 </form>

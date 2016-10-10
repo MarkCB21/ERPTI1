@@ -1,5 +1,5 @@
 <?php
-include("include/classes/UTF-8.php");
+
 include("include/classes/session.php");
 ?>
 
@@ -12,9 +12,9 @@ include("include/classes/session.php");
 if(isset($_SESSION['useredit'])){
    unset($_SESSION['useredit']);
    
-   echo "<h1>Edición de la cuenta completada !</h1>";
-   echo "<p><b>$session->username</b>, su cuenta ha sido actualizada satisfactoriamente!. "
-       ."<a href=\"index.php\">Inicio</a>.</p>";
+   echo "<h1>User Account Edit Success!</h1>";
+   echo "<p><b>$session->username</b>, your account has been successfully updated. "
+       ."<a href=\"main.php\">Main</a>.</p>";
 }
 else{
 ?>
@@ -63,11 +63,11 @@ if($form->value("email") == ""){
 <tr><td colspan="2" align="left"></td></tr>
 </table>
 </form>
-<br><br><br><br>
+
 <?php
 }
 }
-echo "<br>[<a href=\"info.php?user=$session->username\">volver</a>]<br>";
+
 ?>
 
 </body>
