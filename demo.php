@@ -32,11 +32,10 @@
   </script>
   </head>
   <body onload="actdiv()">
-    <form id="Orden_De_Compra">
-    <fieldset>
-      <legend>Orden de Compra</legend>
+    <div class="form-head">Orden de Compra</div>
+    <form>
       <div>
-        <label class="form-label-large" for="nombre_compania">Nombre Compañia</label>
+        <label class="form-label" for="nombre_compania">Nombre Compañia</label>
         <select class="form-control" name='nombre_compania' id='nombre_compania' onchange="actdiv()">
           <?php  
           $con = mysql_query("SELECT Nombre_Compania FROM proveedores");
@@ -49,29 +48,28 @@
         </select>
       </div>
       <div >
-        <label class="form-label-large" for="nombre_producto">Nombre Producto</label>
+        <label class="form-label" for="nombre_producto">Nombre Producto</label>
         <select class="form-control" name='nombre_producto' id='nombre_producto'>
         </select>
       </div>
       <div>
-        <label class="form-label-large" for='cantidad_producto'>Cantidad</label>
-        <input class="form-control" type='int' placeholder='Cantidad' maxlength='3'size='4'name='cantidad_producto'id='cantidad_producto'> 
+        <label class="form-label" for='cantidad_producto'>Cantidad</label>
+        <input style="width:10%" class="form-control" type='int' placeholder='Cantidad' maxlength='3' name='cantidad_producto'id='cantidad_producto'> 
       </div>
-      <div>
-        <label class="form-label">
-        <input class="btn" type = 'submit' value = 'Enviar'>
-        </label>
-      </div>
+      <label class="form-label"><input class="btn" type = 'submit' value = 'Enviar'></label>
     </fieldset>
-    </form>    
-    <?php 
-		$result = mysql_query("SELECT * FROM datos", $link); 
-		echo "<table border = '1'> \n"; 
-		echo "<tr><td class='row'>ID</td><td class='row'>Nombre</td><td class='row'>Correo</td><td class='row'>Telefono</td><td class='row'>Direccion</td></tr>\n"; 
-		while ($row = mysql_fetch_row($result)){ 
-			echo "<tr><td>$row[0]</td><td>$row[1]</td><td>$row[2]</td><td>$row[3]</td><td>$row[4]</td></tr> \n"; 
-		} 
-		echo "</table> \n"; 
-	?> 
+    </form>
+    <center>
+      <?php 
+    		$result = mysql_query("SELECT * FROM datos", $link); 
+    		echo "<table class'table-fill'> \n"; 
+        echo "<thead><th class='text-left'>ID</th><th class='text-left'>Nombre</th><th class='text-left'>Correo</th><th class='text-left'>Telefono</th><th class='text-left'>Direccion</th></thead>\n";
+        echo "<tbody class='table-hover'>\n"; 
+  		  while ($row = mysql_fetch_row($result)){ 
+          echo "<tr><td class='text-left'>$row[0]</td><td class='text-left'>$row[1]</td><td class='text-left'>$row[2]</td><td class='text-left'>$row[3]</td><td class='text-left'>$row[4]</td></tr> \n"; 
+  		  } 
+  		  echo "<tbody>\n</table>\n"; 
+      ?>
+    </center>
   </body>
 </html>

@@ -1,26 +1,22 @@
+body
+{
+	background-color: #CCCCCC;
+	margin:0%;
+}
+
+.form-head
+{
+	margin:0 0 0 0;
+	display: block;
+	background-color: #222222;
+	color: #DDDDDD;
+	padding: 10px 10px 5px 10px;
+	border-bottom: solid 5px #444444;
+}
+
 form
 {
-	margin:5% 5%;
-}
-
-#Orden_De_Compra
-{
-	width: 350px;
-}
-
-#Aniadir_Proveedor
-{
-	width: 350px;
-}
-
-#Agregar_Producto
-{
-	width: 350px;
-}
-
-#Modificar_Proveedores
-{
-	width: 400px;
+	margin: 5%;
 }
 
 form fieldset
@@ -29,6 +25,7 @@ form fieldset
 	border-width: 1px;
 	border-color: #00AAFF;
 	border-radius: 10px;
+	background-color: #FFFFFF;
 }
 
 form fieldset legend
@@ -42,20 +39,10 @@ form fieldset legend
 
 .form-label
 {
-	width: 5em;
+	width: 33%;
 	float: left;
 	display: block;
-	margin: .5em;
-	text-align: right;
-	font-weight: bolder;
-}
-
-.form-label-large
-{
-	width: 10em;
-	float: left;
-	display: block;
-	margin: .5em;
+	margin: 0 5em 0 0;
 	text-align: right;
 	font-weight: bolder;
 }
@@ -65,27 +52,28 @@ form fieldset legend
 	border-style: inset;
 	border-width: 1px;
 	border-radius: 5px;
-	border-color: #004488;
+	border-color: #444444;
 	padding:.2em;
 	display: block;
 	margin: 1em ;
 	padding: 5px 10px 5px 10px;
+	width: 25%
 }
 
 .btn
 {
 	border-style: outset;
-	border-color: #004488;
+	border-color: #444444;
 	border-width: 1px;
 	border-radius: 5px;
-	background-color: #0088DD;
+	background-color: #888888;
 	padding: 5px 10px 5px 10px;
-	margin: .5em 1em;
+	margin: 1em;
 }
 
 .btn:hover
 {
-	background-color: #00AAEE;
+	background-color: #AAAAAA;
 }
 
 .btn:hover:active
@@ -93,32 +81,119 @@ form fieldset legend
 	border-style: inset;
 	border-color: #DDDDDD;
 	border-radius: 5px;
-	background-color: #BBDDFF;
+	background-color: #BBBBBB;
 }
 
-table
-{
-	border-style: groove;
-	border-radius: 5px;
-	border-color: #0088CC;
-	padding: .5em .5em .5em .5em;
+@import url(http://fonts.googleapis.com/css);
+
+/* tabla */
+
+.table-fill {
+  background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 320px;
+  margin: auto;
+  max-width: 600px;
+  padding:5px;
+  width: 100%;
+  box-shadow: 0 5px 10px;
+}
+ 
+th {
+  color:#DDDDDD;;
+  background:#222222;
+  border-bottom:4px solid #666666;
+  border-right: 1px solid #444444;
+  font-size:18px;
+  font-weight: 100;
+  padding:18px;
+  text-align:left;
+  vertical-align:middle;
 }
 
-td
-{
-	border-style: groove;
-	border-radius: 5px;
-	border-color: #0088CC;
-	padding: 0 .5em 0 .5em;
+th:first-child {
+  border-top-left-radius:3px;
+}
+ 
+th:last-child {
+  border-top-right-radius:3px;
+  border-right:none;
+}
+  
+tr {
+  border-top: 1px solid #CCCCCC;
+  border-bottom-: 1px solid #CCCCCC;
+  color:#666666;
+  font-size:16px;
+  font-weight:normal;
+}
+ 
+tr:hover td {
+  background:#555555;
+  color:#FFFFFF;
+  border-top: 1px solid #222222;
+  border-bottom: 1px solid #222222;
+}
+ 
+tr:first-child {
+  border-top:none;
 }
 
-.row
-{
-	text-align: center;
-	border-style: none;
+tr:last-child {
+  border-bottom:none;
+}
+ 
+tr:nth-child(odd) td {
+  background:#EEEEEE;
+}
+ 
+tr:nth-child(odd):hover td {
+  background:#555555;
 }
 
-td:hover
-{
-	background-color: #0088FF;
+tr:last-child td:first-child {
+  border-bottom-left-radius:3px;
+}
+ 
+tr:last-child td:last-child {
+  border-bottom-right-radius:3px;
+}
+ 
+td {
+  background:#FFFFFF;
+  padding:20px;
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:16px;
+  border-right: 1px solid #CCCCCC;
+}
+
+td:last-child {
+  border-right: 0px;
+}
+
+th.text-left {
+  text-align: left;
+}
+
+th.text-center {
+  text-align: center;
+}
+
+th.text-right {
+  text-align: right;
+}
+
+td.text-left {
+  text-align: left;
+}
+
+td.text-center {
+  text-align: center;
+}
+
+td.text-right {
+  text-align: right;
 }
