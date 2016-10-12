@@ -100,6 +100,7 @@ class Session
          $this->username  = $this->userinfo['username'];
          $this->userid    = $this->userinfo['userid'];
          $this->userlevel = $this->userinfo['userlevel'];
+         $_SESSION['userlevel']=$this->userlevel;
          return true;
       }
       /* User not logged in */
