@@ -3,22 +3,22 @@
  
 class Form
 {
-   var $values = array();  //Valores de campo de formulario presentado
-   var $errors = array();  //Mensajes de error de formulario presentado
-   var $num_errors;        //El numero de errores en el formulario enviado
+   var $values = array();  //Holds submitted form field values
+   var $errors = array();  //Holds submitted form error messages
+   var $num_errors;   //The number of errors in submitted form
 
-   /* Clase Constructor */
+   /* Class constructor */
    function Form(){
       /**
-       * Obtiene valor del form y arreglos de error,
-       * que se utiliza cuando hay un error en un formulario enviado por el usuario.
+       * Get form value and error arrays, used when there
+       * is an error with a user-submitted form.
        */
       if(isset($_SESSION['value_array']) && isset($_SESSION['error_array'])){
          $this->values = $_SESSION['value_array'];
          $this->errors = $_SESSION['error_array'];
          $this->num_errors = count($this->errors);
 
-         unset($_SESSION['value_array']); // unset Destruye una variable especificada
+         unset($_SESSION['value_array']);
          unset($_SESSION['error_array']);
       }
       else{
@@ -27,17 +27,16 @@ class Form
    }
 
    /**
-    * setValue - Registra el valor introducido
-    * en el campo de formulario dado.
+    * setValue - Records the value typed into the given
+    * form field by the user.
     */
    function setValue($field, $value){
       $this->values[$field] = $value;
    }
 
    /**
-    * setError - Registro de errores 
-    * por los nombres de campos del formulario
-    * y el mensaje de error que se le atribuye.
+    * setError - Records new form error given the form
+    * field name and the error message attached to it.
     */
    function setError($field, $errmsg){
       $this->errors[$field] = $errmsg;
@@ -45,9 +44,8 @@ class Form
    }
 
    /**
-    * Valor - Devuelve el valor que se asigna
-    * al campo dado, si no existe ninguno, se
-    * devuelve una cadena vacia.
+    * value - Returns the value attached to the given
+    * field, if none exists, the empty string is returned.
     */
    function value($field){
       if(array_key_exists($field,$this->values)){
@@ -58,9 +56,8 @@ class Form
    }
 
    /**
-    * Error - Devuelve el mensaje de error
-    * asociado al campo dado, si no existe ninguno,
-    * se devuelve una cadena vacia.
+    * error - Returns the error message attached to the
+    * given field, if none exists, the empty string is returned.
     */
    function error($field){
       if(array_key_exists($field,$this->errors)){
@@ -70,7 +67,7 @@ class Form
       }
    }
 
-   /* getErrorArray - Devuelve la serie de mensajes de error */
+   /* getErrorArray - Returns the array of error messages */
    function getErrorArray(){
       return $this->errors;
    }
