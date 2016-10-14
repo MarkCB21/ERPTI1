@@ -3,8 +3,7 @@
  
 class Mailer
 {
-   /* Envia Bienvenida - Envia un mensaje de bienvenida al nuevo usuario registrado, ademas de indicar el username y pass
-
+   /**
     * sendWelcome - Sends a welcome message to the newly
     * registered user, also supplying the username and
     * password.
@@ -27,10 +26,7 @@ class Mailer
       return mail($email,$subject,$body,$from);
    }
    
-   /* Envia nuevo pss - manda el nuevo pass generado
-      al correo electronico que ha especificado el usuario
-
-
+   /**
     * sendNewPass - Sends the newly generated password
     * to the user's email address that was specified at
     * sign-up.
@@ -54,10 +50,7 @@ class Mailer
    }
 };
 
-
-/* 
-Inicia objeto mailer 
-Initialize mailer object */
+/* Initialize mailer object */
 $mailer = new Mailer;
  
 ?>
