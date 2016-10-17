@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-10-2016 a las 22:41:14
+-- Tiempo de generación: 17-10-2016 a las 18:55:16
 -- Versión del servidor: 10.1.9-MariaDB
 -- Versión de PHP: 5.6.15
 
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `archivo` (
-  `ID_Archivo` int(11) DEFAULT NULL,
+  `ID_Archivo` int(11) NOT NULL,
   `Ruta_Archivo` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -101,8 +101,7 @@ CREATE TABLE `categoria` (
 
 CREATE TABLE `ciudad` (
   `ID_Ciudad` int(11) NOT NULL,
-  `Nombre_Ciudad` varchar(32) DEFAULT NULL,
-  `ID_Comuna` int(11) DEFAULT NULL
+  `Nombre_Ciudad` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -127,25 +126,8 @@ CREATE TABLE `compra_producto` (
 
 CREATE TABLE `comuna` (
   `ID_Comuna` int(11) NOT NULL,
-  `Nombre_Comuna` varchar(32) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `datos`
---
-
-CREATE TABLE `datos` (
-  `ID_D` int(11) NOT NULL,
-  `ID_Rut` varchar(10) NOT NULL,
-  `Nombre_C` varchar(30) NOT NULL,
-  `Apellido_P` varchar(30) NOT NULL,
-  `Apellido_M` varchar(30) NOT NULL,
-  `Correo` varchar(30) NOT NULL,
-  `Telefono` varchar(12) NOT NULL,
-  `Direccion` varchar(30) NOT NULL,
-  `ID_Comuna` int(11) NOT NULL
+  `Nombre_Comuna` varchar(32) DEFAULT NULL,
+  `ID_Ciudad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -176,7 +158,7 @@ CREATE TABLE `datos_comprador` (
   `Nombre` varchar(32) DEFAULT NULL,
   `Razon_Social` varchar(32) DEFAULT NULL,
   `Rut` varchar(10) DEFAULT NULL,
-  `ID_Comuna` int(11) DEFAULT NULL
+  `ID_Direccion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -199,7 +181,7 @@ CREATE TABLE `direccion` (
 --
 
 CREATE TABLE `documento` (
-  `ID_Doc` int(11) DEFAULT NULL,
+  `ID_Doc` int(11) NOT NULL,
   `Descripcion` varchar(256) DEFAULT NULL,
   `ID_Archivo` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -215,7 +197,7 @@ CREATE TABLE `factura` (
   `Fecha_Emision` date DEFAULT NULL,
   `Total_Neto` int(11) DEFAULT NULL,
   `ID_C` int(11) DEFAULT NULL,
-  `ID_Com` int(11) DEFAULT NULL,
+  `ID_Com` int(11) NOT NULL,
   `Condiciones_de_Venta` varchar(128) DEFAULT NULL,
   `IVA` int(11) DEFAULT NULL,
   `Giro_Actividad` varchar(32) DEFAULT NULL,
@@ -252,7 +234,13 @@ CREATE TABLE `login_usuario` (
   `ID_L` int(11) NOT NULL,
   `Nombre_Cuenta` varchar(32) DEFAULT NULL,
   `Contrasena` varchar(32) DEFAULT NULL,
-  `ID_D` int(11) DEFAULT NULL,
+  `ID_Rut` varchar(20) NOT NULL,
+  `Nombre_C` varchar(32) NOT NULL,
+  `Apellido_P` varchar(32) NOT NULL,
+  `Apellido_M` varchar(32) NOT NULL,
+  `Correo` varchar(32) NOT NULL,
+  `Telefono` varchar(12) NOT NULL,
+  `ID_Direccion` int(11) NOT NULL,
   `Tipo` int(1) DEFAULT NULL,
   `Estado` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -301,7 +289,13 @@ CREATE TABLE `proveedores` (
   `ID_Prov` int(11) NOT NULL,
   `Nombre_Compania` varchar(32) DEFAULT NULL,
   `Tipo_Proveedor` int(11) DEFAULT NULL,
-  `ID_D` int(11) DEFAULT NULL
+  `ID_Rut` varchar(20) NOT NULL,
+  `Nombre_C` varchar(32) NOT NULL,
+  `Apellido_P` varchar(32) NOT NULL,
+  `Apellido_M` varchar(32) NOT NULL,
+  `Correo` varchar(32) NOT NULL,
+  `Telefono` varchar(12) NOT NULL,
+  `ID_Direccion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -319,6 +313,12 @@ CREATE TABLE `tipo_proveedores` (
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `archivo`
+--
+ALTER TABLE `archivo`
+  ADD PRIMARY KEY (`ID_Archivo`);
 
 --
 -- Indices de la tabla `articulob`
@@ -363,12 +363,6 @@ ALTER TABLE `comuna`
   ADD PRIMARY KEY (`ID_Comuna`);
 
 --
--- Indices de la tabla `datos`
---
-ALTER TABLE `datos`
-  ADD PRIMARY KEY (`ID_D`);
-
---
 -- Indices de la tabla `datos_compania`
 --
 ALTER TABLE `datos_compania`
@@ -385,6 +379,12 @@ ALTER TABLE `datos_comprador`
 --
 ALTER TABLE `direccion`
   ADD PRIMARY KEY (`ID_Direccion`);
+
+--
+-- Indices de la tabla `documento`
+--
+ALTER TABLE `documento`
+  ADD PRIMARY KEY (`ID_Doc`);
 
 --
 -- Indices de la tabla `factura`
@@ -467,11 +467,6 @@ ALTER TABLE `compra_producto`
 --
 ALTER TABLE `comuna`
   MODIFY `ID_Comuna` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `datos`
---
-ALTER TABLE `datos`
-  MODIFY `ID_D` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `datos_compania`
 --
