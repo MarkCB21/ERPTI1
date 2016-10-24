@@ -141,22 +141,25 @@ form fieldset legend
   border-color: #555555;
 }
 
-/*Aqui Bastian pones el diseno del modulo*/
+  
+ /*Aqui Bastian pones el diseno del modulo*/
 .modulo
 {
-  border-style: outset;
+  border-style: none;
   border-color: #444444;
   border-width: 5px;
-  border-radius: 20px;
+  border-radius: 3px;
+  border-collapse: collapse;
   color:#DDDDDD;;
   background:#222222;
   padding: 5px 10px 5px 10px;
   text-align: center;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 60px;
   margin: 5% 0% 0% 5%;
   font-size:18px;
   font-weight: 100;
+  box-shadow: 0 5px 10px #2d2938;
   cursor: url(cur.png),default;
 }
 
