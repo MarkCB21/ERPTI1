@@ -11,8 +11,9 @@
 <?php
 
 include "tablas.php";
-
-echo "<div class='form-head'>Modulo de Prueba <input class='return' type='button' value='Volver'></div>";
+echo "<div class='cosa'>layout</div>";
+echo "<div class='form-head'>Modulo de Prueba</div><div class='return'>Volver</div>";
+echo "<div class='container'>";
 echo "<table class='table-fill'> \n"; 
 echo "<thead><th class='text-left'>ID_Region</th><th class='text-left'>Nombre_Region</th></thead>\n";
 echo "<tbody class='table-hover'>\n";
@@ -31,4 +32,5 @@ echo "<input type='button' class='modulo' value='Modulo Prueba'>";
 echo "<input type='button' class='modulo' value='Modulo Prueba'>";
 echo "<input type='button' class='modulo' value='Modulo Prueba'>";
 echo "<input type='button' class='modulo' value='Modulo Prueba'>";
+echo "</div>";
 ?>

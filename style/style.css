@@ -1,19 +1,47 @@
 @import url(http://fonts.googleapis.com/css);
 
+html
+{
+  cursor: url(cur.png),default;
+}
+
 body
 {
 	background-color: #CCCCCC;
 	margin:0%;
 }
 
+div
+{
+  display: block;
+}
+
 .form-head
 {
-	margin:0 0 0 0;
+	margin: 0 0 0 20%;
+  position: fixed;
+  width: 70%;
+  height: 3%;
 	display: block;
 	background-color: #222222;
 	color: #DDDDDD;
 	padding: 10px 10px 5px 10px;
 	border-bottom: solid 5px #444444;
+}
+
+.cosa
+{
+  width: 20%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #F3F3F3;
+}
+
+.container
+{
+  padding: 3% 0 0 20%;
 }
 
 form
@@ -71,6 +99,7 @@ form fieldset legend
 	background-color: #888888;
 	padding: 5px 10px 5px 10px;
 	margin: 1em;
+  cursor: url(cur.png),default;
 }
 
 .btn:hover
@@ -88,28 +117,28 @@ form fieldset legend
 
 .return
 {
-  border-style: outset;
-  border-color: #444444;
-  border-width: 1px;
-  border-top-width: 5px;
-  border-top-color: #444444;
-  border-radius: 5px;
-  background-color: #888888;
-  padding: 0px 10px 5px 10px;
-  float: right;
+  margin:0 0 0 90%;
+  position: fixed;
+  width: 10%;
+  height: 3%;
+  display: block;
+  background-color: #222222;
+  color: #DDDDDD;
+  padding: 10px 10px 5px 10px;
+  border: solid #444444;
+  border-width: 0 0 5px 1px;
 }
 
 .return:hover
 {
-  background-color: #AAAAAA;
+  background-color: #2A2A2A;
+  border-color: #4C4C4C;
 }
 
 .return:hover:active
 {
-  border-style: inset;
-  border-color: #DDDDDD;
-  border-radius: 5px;
-  background-color: #BBBBBB;
+  background-color: #333333;
+  border-color: #555555;
 }
 
 /*Aqui Bastian pones el diseno del modulo*/
@@ -128,8 +157,7 @@ form fieldset legend
   margin: 5% 0% 0% 5%;
   font-size:18px;
   font-weight: 100;
-
-
+  cursor: url(cur.png),default;
 }
 
 .modulo:hover
@@ -175,16 +203,19 @@ th
   vertical-align:middle;
 }
 
-th:first-child {
+th:first-child
+{
   border-top-left-radius:3px;
 }
  
-th:last-child {
+th:last-child
+{
   border-top-right-radius:3px;
   border-right:none;
 }
   
-tr {
+tr
+{
   border-top: 1px solid #CCCCCC;
   border-bottom-: 1px solid #CCCCCC;
   color:#666666;
@@ -192,34 +223,41 @@ tr {
   font-weight:normal;
 }
  
-tr:hover td {
+tr:hover td
+{
   background:#555555;
   color:#FFFFFF;
   border-top: 1px solid #222222;
   border-bottom: 1px solid #222222;
 }
  
-tr:first-child {
+tr:first-child
+{
   border-top:none;
 }
 
-tr:last-child {
+tr:last-child
+{
   border-bottom:none;
 }
  
-tr:nth-child(odd) td {
+tr:nth-child(odd) td
+{
   background:#EEEEEE;
 }
  
-tr:nth-child(odd):hover td {
+tr:nth-child(odd):hover td
+{
   background:#555555;
 }
 
-tr:last-child td:first-child {
+tr:last-child td:first-child
+{
   border-bottom-left-radius:3px;
 }
  
-tr:last-child td:last-child {
+tr:last-child td:last-child
+{
   border-bottom-right-radius:3px;
 }
  
@@ -233,30 +271,37 @@ td {
   border-right: 1px solid #CCCCCC;
 }
 
-td:last-child {
+td:last-child
+{
   border-right: 0px;
 }
 
-th.text-left {
+th.text-left
+{
   text-align: left;
 }
 
-th.text-center {
+th.text-center
+{
   text-align: center;
 }
 
-th.text-right {
+th.text-right
+{
   text-align: right;
 }
 
-td.text-left {
+td.text-left
+{
   text-align: left;
 }
 
-td.text-center {
+td.text-center
+{
   text-align: center;
 }
 
-td.text-right {
+td.text-right
+{
   text-align: right;
 }
