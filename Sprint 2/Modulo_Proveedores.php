@@ -4,7 +4,7 @@
 	function redi(row)
 	{
 		frm = document.getElementById('frm')
-		frm.innerHTML = "<input name='ID_Region' value='"+row.id+"' hidden>"
+		frm.innerHTML = "<input name='ID_Prov' value='"+row.id+"' hidden>"
 		frm.submit()
 	}
 	function show(string)
@@ -26,12 +26,12 @@ echo "<thead onclick='show()'>
 
 </thead>\n";
 echo "<tbody class='table-hover'>\n";
-for($i=0;$i<count($Apellido_M);$i++)
+for($i=0;$i<count($proveedores_ID_Prov);$i++)
 {
-	echo "<tr onclick=redi(this) id='$ID_Prov[$i]'>
-	<td class='text-left'>$ID_Prov[$i]</td>
-	<td class='text-left'>$Nombre_Compania[$i]</td>
-	<td class='text-left'>$Tipo_Proveedor[$i]</td>
+	echo "<tr onclick=redi(this) id='$proveedores_ID_Prov[$i]'>
+	<td class='text-left'>$proveedores_ID_Prov[$i]</td>
+	<td class='text-left'>$proveedores_Nombre_Compania[$i]</td>
+	<td class='text-left'>$proveedores_Tipo_Proveedor[$i]</td>
 	</tr> \n"; 
 }
 echo "<tbody>\n</table>\n";
