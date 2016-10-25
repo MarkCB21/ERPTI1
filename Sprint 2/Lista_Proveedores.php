@@ -7,15 +7,20 @@
 		frm.innerHTML = "<input name='ID_Region' value='"+row.id+"' hidden>"
 		frm.submit()
 	}
+	function volver(string)
+	{
+		window.location = 'Modulo_Proveedores.php'
+	}
 </script>
 <body>
 <?php
 include "tablas.php";
 echo "<div class='cosa'>layout</div>";
-echo "<div class='form-head'>Modulo Proveedores</div><div class='return'>Volver</div>";
+echo "<div class='form-head'>Lista Proveedores</div><div class='return' onclick='volver()'>Volver</div>";
 echo "<div class='container'>";
 echo "<table class='table-fill'> \n"; 
-echo "<thead><th class='text-left'>ID_Prov</th>
+echo "<thead>
+<th class='text-left'>ID_Prov</th>
 <th class='text-left'>Nombre_Compania</th>
 <th class='text-left'>Tipo_Proveedor</th>
 <th class='text-left'>ID_Rut</th>
@@ -44,9 +49,7 @@ for($i=0;$i<count($Apellido_M);$i++)
 }
 echo "<tbody>\n</table>\n";
 echo "<form id='frm' action='algo.php' method='POST' hidden></form>";
-echo "<input type='button' class='modulo' value='Agregar Proveedor'>";
-echo "<input type='button' class='modulo' value='Productos Proveedores'>";
-echo "</div>"
+echo "</div>";
 ?>
 </body>
 </html>
