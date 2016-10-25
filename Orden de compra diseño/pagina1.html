@@ -1,16 +1,23 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <?php
   $link = mysql_connect("localhost","root", "");
   mysql_select_db("erp", $link);
 ?>
+
 <html>
+
+<link href="stayle	.css" rel="stylesheet" type="text/css">
+<h1 id="Cabezera">Cabecera: Productos Proveedores <button value="REGRESAR" onClick="www.google.com"></h1>
+<h1 id="Layout">
+Layout
+</h1>	
   <head>
   <meta content='text/html; charset=utf-8'>
   <title></title>
-  <link href="Styles.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <form action='pagina2.php' method='POST' id="formulario">
+  <div id="table">
+    <form action='pagina2.php' method='POST' >
     <fieldset>
       <legend>Orden de Compra</legend>
       <div>
@@ -40,6 +47,7 @@
       <div>
         <input type = 'submit' value = 'Enviar'>
       </div>
+	</div>
     </fieldset>
     </form>    
   </body>
