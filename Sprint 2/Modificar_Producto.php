@@ -19,7 +19,7 @@ else
 		<div class='cosa'>layout</div>
 		<div class='form-head'>Modificar Producto</div>
 		<div class='container'>
-			<form>
+			<form action="actualiza.php">
 				<?php 
 				echo "
 				<div>
