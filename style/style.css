@@ -20,7 +20,7 @@ div
 {
 	margin: 0 0 0 20%;
   position: fixed;
-  width: 70%;
+  width: 80%;
   height: 3%;
 	display: block;
 	background-color: #222222;
@@ -46,7 +46,7 @@ div
 
 form
 {
-	margin: 5%;
+	margin: 5% 0 0 5%;
 }
 
 form fieldset
@@ -114,33 +114,6 @@ form fieldset legend
 	border-radius: 5px;
 	background-color: #BBBBBB;
 }
-
-.return
-{
-  margin:0 0 0 90%;
-  position: fixed;
-  width: 10%;
-  height: 3%;
-  display: block;
-  background-color: #222222;
-  color: #DDDDDD;
-  padding: 10px 10px 5px 10px;
-  border: solid #444444;
-  border-width: 0 0 5px 1px;
-}
-
-.return:hover
-{
-  background-color: #2A2A2A;
-  border-color: #4C4C4C;
-}
-
-.return:hover:active
-{
-  background-color: #333333;
-  border-color: #555555;
-}
-
   
  /*Aqui Bastian pones el diseno del modulo*/
 .modulo
@@ -155,7 +128,7 @@ form fieldset legend
   padding: 5px 10px 5px 10px;
   text-align: center;
   width: auto;
-  height: 60px;
+  height: 50px;
   margin: 5% 0% 0% 5%;
   font-size:18px;
   font-weight: 100;
@@ -183,7 +156,7 @@ form fieldset legend
   background: white;
   border-radius:3px;
   border-collapse: collapse;
-  height: 320px;
+  height: auto;
   margin: 5% 0% 0% 5%;
   max-width: 400px;
   padding:5px;
@@ -221,8 +194,6 @@ tr
   border-top: 1px solid #CCCCCC;
   border-bottom-: 1px solid #CCCCCC;
   color:#666666;
-  font-size:10px;
-  font-weight:normal;
 }
  
 tr:hover td
@@ -265,11 +236,11 @@ tr:last-child td:last-child
  
 td {
   background:#FFFFFF;
-  padding:20px;
+  padding:10px;
   text-align:left;
   vertical-align:middle;
   font-weight:300;
-  font-size:16px;
+  font-size:10px;
   border-right: 1px solid #CCCCCC;
 }
 

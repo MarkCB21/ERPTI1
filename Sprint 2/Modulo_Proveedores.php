@@ -7,19 +7,15 @@
 		frm.innerHTML = "<input name='ID_Prov' value='"+row.id+"' hidden>"
 		frm.submit()
 	}
-	function show(string)
-	{
-		window.location = 'Lista_Proveedores.php'
-	}
 </script>
 <body>
 <?php
 include "tablas.php";
 echo "<div class='cosa'>layout</div>";
-echo "<div class='form-head'>Modulo Proveedores</div><div class='return'>Volver</div>";
+echo "<div class='form-head'>Modulo Proveedores</div>";
 echo "<div class='container'>";
 echo "<table class='table-fill'> \n";
-echo "<thead onclick='show()'>
+echo "<thead onclick=\"window.location='Lista_Proveedores.php'\">
 <th class='text-left'>ID_Prov</th>
 <th class='text-left'>Nombre_Compania</th>
 <th class='text-left'>Tipo_Proveedor</th>
@@ -35,9 +31,9 @@ for($i=0;$i<count($proveedores_ID_Prov);$i++)
 	</tr> \n"; 
 }
 echo "<tbody>\n</table>\n";
-echo "<form id='frm' action='algo.php' method='POST' hidden></form>";
-echo "<input type='button' class='modulo' value='Agregar Proveedor'>";
-echo "<input type='button' class='modulo' value='Productos Proveedores'>";
+echo "<form id='frm' action='Modificar_Proveedor.php' method='POST' hidden></form>";
+echo "<input type='button' class='modulo' value='Agregar Proveedor' onclick=\"window.location='Agregar_Proveedor.php'\">";
+echo "<input type='button' class='modulo' value='Productos Proveedores' onclick=\"window.location='Modulo_Productos.php'\">";
 echo "</div>";
 ?>
 </body>

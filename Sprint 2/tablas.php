@@ -101,5 +101,53 @@ if ($result = mysqli_query($link,$con))
     mysqli_free_result($result);
 }
 
+// Tabla tipo_proveedores
+$con = "SELECT * FROM tipo_proveedores";
+if ($result = mysqli_query($link,$con))
+{
+	$tipo_proveedores_ID_Tipo_Proveedor = [];
+	$tipo_proveedores_Nombre = [];
+	$tipo_proveedores_Descripcion = [];
+	while ($row = mysqli_fetch_object($result))
+	{
+		array_push($tipo_proveedores_ID_Tipo_Proveedor, $row->ID_Tipo_Proveedor);
+		array_push($tipo_proveedores_Nombre, $row->Nombre);
+		array_push($tipo_proveedores_Descripcion, $row->Descripcion);
+    }
+    mysqli_free_result($result);
+}
+
+// Tabla direccion
+$con = "SELECT * FROM direccion";
+if ($result = mysqli_query($link,$con))
+{
+	$direccion_ID_Direccion = [];
+	$direccion_Direccion = [];
+	$direccion_Nombre_Local = [];
+	$direccion_ID_Comuna = [];
+	while ($row = mysqli_fetch_object($result))
+	{
+		array_push($direccion_ID_Direccion, $row->ID_Direccion);
+		array_push($direccion_Direccion, $row->Direccion);
+		array_push($direccion_Nombre_Local, $row->Nombre_Local);
+		array_push($direccion_ID_Comuna, $row->ID_Comuna);
+    }
+    mysqli_free_result($result);
+}
+
+// Tabla categoria
+$con = "SELECT * FROM categoria";
+if ($result = mysqli_query($link,$con))
+{
+	$categoria_ID_Categoria = [];
+	$categoria_Nombre = [];
+	while ($row = mysqli_fetch_object($result))
+	{
+		array_push($categoria_ID_Categoria, $row->ID_Categoria);
+		array_push($categoria_Nombre, $row->Nombre);
+    }
+    mysqli_free_result($result);
+}
+
 mysqli_close($link);
 ?>

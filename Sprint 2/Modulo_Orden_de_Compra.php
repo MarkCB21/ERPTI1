@@ -16,12 +16,12 @@
 <?php
 include "tablas.php";
 echo "<div class='cosa'>layout</div>";
-echo "<div class='form-head'>Modulo Orden de Compra</div><div class='return'>Volver</div>";
+echo "<div class='form-head'>Modulo Orden de Compra</div>";
 echo "<div class='container'>";
 echo "<table class='table-fill'> \n";
-echo "<thead onclick='show()'>
+echo "<thead onclick=\"window.location = 'Lista_Orden_de_Compra.php'\">
 <th class='text-left'>ID_Produc</th>
-<th class='text-left'>ID_Prod</th>
+<th class='text-left'>Producto</th>
 <th class='text-left'>Cantidad</th>
 
 </thead>\n";
@@ -30,7 +30,7 @@ for($i=0;$i<count($produc_com_ID_Produc);$i++)
 {
 	echo "<tr onclick=redi(this) id='$produc_com_ID_Produc[$i]'>
 	<td class='text-left'>$produc_com_ID_Produc[$i]</td>
-	<td class='text-left'>$produc_com_ID_Prod[$i]</td>
+	<td class='text-left'>".$productos_Nombre[intval($produc_com_ID_Prod[$i])-1]."</td>
 	<td class='text-left'>$produc_com_Cantidad[$i]</td>
 	</tr> \n"; 
 }

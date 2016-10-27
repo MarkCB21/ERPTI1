@@ -12,7 +12,7 @@
 
 include "tablas.php";
 echo "<div class='cosa'>layout</div>";
-echo "<div class='form-head'>Modulo de Prueba</div><div class='return'>Volver</div>";
+echo "<div class='form-head'>Modulo de Prueba</div>";
 echo "<div class='container'>";
 echo "<table class='table-fill'> \n"; 
 echo "<thead><th class='text-left'>ID_Region</th><th class='text-left'>Nombre_Region</th></thead>\n";

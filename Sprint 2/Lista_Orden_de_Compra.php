@@ -16,12 +16,13 @@
 <?php
 include "tablas.php";
 echo "<div class='cosa'>layout</div>";
-echo "<div class='form-head'>Lista Orden de Compra</div><div class='return' onclick='volver()'>Volver</div>";
+echo "<div class='form-head'>Lista Orden de Compra</div>";
 echo "<div class='container'>";
 echo "<table class='table-fill'> \n"; 
 echo "<thead>
 <th class='text-left'>ID_Produc</th>
-<th class='text-left'>ID_Prod</th>
+<th class='text-left'>ID_Compra</th>
+<th class='text-left'>Producto</th>
 <th class='text-left'>Cantidad</th>
 <th class='text-left'>Descuento_Porcentaje</th>
 <th class='text-left'>Descuento</th>
@@ -33,7 +34,8 @@ for($i=0;$i<count($produc_com_ID_Produc);$i++)
 {
 	echo "<tr onclick=redi(this) id='$produc_com_ID_Produc[$i]'>
 	<td class='text-left'>$produc_com_ID_Produc[$i]</td>
-	<td class='text-left'>$produc_com_ID_Prod[$i]</td>
+	<td class='text-left'>$produc_com_ID_Compra[$i]</td>
+	<td class='text-left'>".$productos_Nombre[intval($produc_com_ID_Prod[$i])-1]."</td>
 	<td class='text-left'>$produc_com_Cantidad[$i]</td>
 	<td class='text-left'>$produc_com_Descuento_Porcentaje[$i]</td>
 	<td class='text-left'>$produc_com_Descuento[$i]</td>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2016 a las 05:01:33
+-- Tiempo de generación: 27-10-2016 a las 03:09:10
 -- Versión del servidor: 10.1.9-MariaDB
 -- Versión de PHP: 5.6.15
 
@@ -30,6 +30,13 @@ CREATE TABLE `archivo` (
   `ID_Archivo` int(11) NOT NULL,
   `Ruta_Archivo` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `archivo`
+--
+
+INSERT INTO `archivo` (`ID_Archivo`, `Ruta_Archivo`) VALUES
+(1, 'http://pillan.inf.uct.cl/~aflores/doc/test.txt');
 
 -- --------------------------------------------------------
 
@@ -93,6 +100,13 @@ CREATE TABLE `categoria` (
   `Nombre` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`ID_Categoria`, `Nombre`) VALUES
+(1, 'Fruta');
+
 -- --------------------------------------------------------
 
 --
@@ -106,6 +120,13 @@ CREATE TABLE `compra_producto` (
   `Fecha` date DEFAULT NULL,
   `ID_Doc` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `compra_producto`
+--
+
+INSERT INTO `compra_producto` (`ID_Compra`, `Cantidad`, `Total`, `Fecha`, `ID_Doc`) VALUES
+(1, 5, 2500, '2016-10-26', 1);
 
 -- --------------------------------------------------------
 
@@ -402,6 +423,13 @@ CREATE TABLE `direccion` (
   `ID_Comuna` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `direccion`
+--
+
+INSERT INTO `direccion` (`ID_Direccion`, `Direccion`, `Nombre_Local`, `ID_Comuna`) VALUES
+(1, 'FREIRE#863', 'Home', 148);
+
 -- --------------------------------------------------------
 
 --
@@ -413,6 +441,13 @@ CREATE TABLE `documento` (
   `Descripcion` varchar(256) DEFAULT NULL,
   `ID_Archivo` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `documento`
+--
+
+INSERT INTO `documento` (`ID_Doc`, `Descripcion`, `ID_Archivo`) VALUES
+(1, 'documento venta manzanas', 1);
 
 -- --------------------------------------------------------
 
@@ -490,6 +525,13 @@ CREATE TABLE `productos` (
   `ID_Prov` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`ID_Prod`, `ID_Categoria`, `Nombre`, `Precio_Unitario`, `Fecha_Agregado`, `Fecha_Modificacion`, `Medida`, `ID_Prov`) VALUES
+(1, 1, 'Manzana Roja Granel', 700, '2016-10-26', '2016-10-26', 'Kg', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -506,6 +548,13 @@ CREATE TABLE `produc_com` (
   `Total_Inventario` int(11) DEFAULT NULL,
   `Anulado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `produc_com`
+--
+
+INSERT INTO `produc_com` (`ID_Produc`, `ID_Compra`, `ID_Prod`, `Cantidad`, `Descuento_Porcentaje`, `Descuento`, `Total_Inventario`, `Anulado`) VALUES
+(1, 1, 1, 5, 0, 200, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -525,6 +574,13 @@ CREATE TABLE `proveedores` (
   `Telefono` varchar(12) NOT NULL,
   `ID_Direccion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `proveedores`
+--
+
+INSERT INTO `proveedores` (`ID_Prov`, `Nombre_Compania`, `Tipo_Proveedor`, `ID_Rut`, `Nombre_C`, `Apellido_P`, `Apellido_M`, `Correo`, `Telefono`, `ID_Direccion`) VALUES
+(1, 'Manzaneitor.inc', 1, '19717817-5', 'Andres Nicolas', 'Flores', 'Iturra', 'aflores2015@alu.uct.cl', '+56956939505', 1);
 
 -- --------------------------------------------------------
 
@@ -569,6 +625,14 @@ CREATE TABLE `tipo_proveedores` (
   `Nombre` varchar(32) DEFAULT NULL,
   `Descripcion` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tipo_proveedores`
+--
+
+INSERT INTO `tipo_proveedores` (`ID_Tipo_Proveedor`, `Nombre`, `Descripcion`) VALUES
+(1, 'Proveedor_de_bienes', 'Empresa o persona, que se refiere a la internacionalización o elaboración de algún producto'),
+(2, 'Proveedor_de Servicios', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -719,7 +783,7 @@ ALTER TABLE `tipo_proveedores`
 -- AUTO_INCREMENT de la tabla `archivo`
 --
 ALTER TABLE `archivo`
-  MODIFY `ID_Archivo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Archivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `articulob`
 --
@@ -739,12 +803,12 @@ ALTER TABLE `boleta`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `ID_Categoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `compra_producto`
 --
 ALTER TABLE `compra_producto`
-  MODIFY `ID_Compra` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `comuna`
 --
@@ -764,12 +828,12 @@ ALTER TABLE `datos_comprador`
 -- AUTO_INCREMENT de la tabla `direccion`
 --
 ALTER TABLE `direccion`
-  MODIFY `ID_Direccion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `documento`
 --
 ALTER TABLE `documento`
-  MODIFY `ID_Doc` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Doc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `factura`
 --
@@ -789,17 +853,17 @@ ALTER TABLE `login_usuario`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `ID_Prod` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Prod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `produc_com`
 --
 ALTER TABLE `produc_com`
-  MODIFY `ID_Produc` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Produc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
-  MODIFY `ID_Prov` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Prov` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `region`
 --
@@ -809,7 +873,7 @@ ALTER TABLE `region`
 -- AUTO_INCREMENT de la tabla `tipo_proveedores`
 --
 ALTER TABLE `tipo_proveedores`
-  MODIFY `ID_Tipo_Proveedor` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Tipo_Proveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Restricciones para tablas volcadas
 --
