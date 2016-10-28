@@ -10,8 +10,8 @@
 		<div class='container'>
 			<form>
 				<div>
-					<label for="Proveedor" class="form-label">Proveedor</label>
-					<select id="Proveedor" class="form-control">
+					<label for="ID_Prov" class="form-label">Proveedor</label>
+					<select id="ID_Prov" name="ID_Prov" class="form-control">
 					<?php 
 					for ($i=0; $i < count($proveedores_ID_Prov); $i++) { 
 						echo "<option value='$proveedores_ID_Prov[$i]'>$proveedores_Nombre_Compania[$i]</option>";
@@ -20,8 +20,8 @@
 					</select>
 				</div>
 				<div>
-					<label for="Categoria" class="form-label">Categoria</label>
-					<select id="Categoria" class="form-control">
+					<label for="ID_Categoria" class="form-label">Categoria</label>
+					<select id="ID_Categoria" name="ID_Categoria" class="form-control">
 					<?php 
 					for ($i=0; $i < count($categoria_ID_Categoria); $i++) { 
 						echo "<option value='$categoria_ID_Categoria[$i]'>$categoria_Nombre[$i]</option>";
@@ -31,15 +31,15 @@
 				</div>
 				<div>
 					<label for="Nombre" class="form-label">Nombre</label>
-					<input id="Nombre" class="form-control" type="text">
+					<input id="Nombre" name="Nombre" class="form-control" type="text">
 				</div>
 				<div>
 					<label for="Medida" class="form-label">Medida</label>
-					<input id="Medida" class="form-control" type="text">
+					<input id="Medida" name="Medida" class="form-control" type="text">
 				</div>
 				<div>
 					<label for="Precio_Unitario" class="form-label">Precio por Medida</label>
-					<input id="Precio_Unitario" class="form-control" type="text">
+					<input id="Precio_Unitario" name="Precio_Unitario" class="form-control" type="text">
 				</div>
 				<center>
 					<input class="btn" type="submit" value="Crear">
