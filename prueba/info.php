@@ -1,32 +1,30 @@
 <?php
-include("include/classes/UTF-8.php");
-include("include/classes/session.php");
+	include("include/classes/UTF-8.php");
+	include("include/classes/session.php");
 ?>
-
 <html>
-<title>Información de usuario</title>
+	<title>Información de usuario</title>
 <body>
-
 <?php
-/* comprueba el error de nombre de usuario */
-$req_user = trim($_GET['user']);
-if(!$req_user || strlen($req_user) == 0 ||
-   !preg_match("/^([0-9a-z])+$/", $req_user) ||
-   !$database->usernameTaken($req_user)){
-	header( "refresh:0; url=index.php" );
-    die("usuario no registrado");
-}
+	/* comprueba el error de nombre de usuario */
+	$req_user = trim($_GET['user']);
+	if(!$req_user || strlen($req_user) == 0 ||
+		!preg_match("/^([0-9a-z])+$/", $req_user) ||
+		!$database->usernameTaken($req_user)){
+		header( "refresh:0; url=index.php" );
+		die("usuario no registrado");
+	}
 
 /* Logged in user viewing own account */
 if(strcmp($session->username,$req_user) == 0){
    echo "<h1>Mi Cuenta</h1>";
 }
-/* Visitor not viewing own account */
+/* informacion del usuario */
 else{
    echo "<h1>Información de usuario</h1>";
 }
 
-/* Display requested user information */
+/* solicitar informacion del usuario */
 $req_user_info = $database->getUserInfo($req_user);
 
 /* Usuario */

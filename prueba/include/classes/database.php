@@ -128,7 +128,7 @@ class MySQLDB
       if(!get_magic_quotes_gpc()){
          $username = addslashes($username);
       }
-      $q = "SELECT username FROM ".TBL_BANNED_USERS." WHERE username = '$username'";
+      $q = "SELECT username FROM ".TBL_USERS." WHERE username = '$username' and userlevel =3 ";
       $result = mysqli_query($this->connection, $q);
       return (mysqli_num_rows($result) > 0);
    }
@@ -138,7 +138,7 @@ class MySQLDB
     * info into the database. Appropriate user level is set.
     * Returns true on success, false otherwise.
     */
-   function addNewUser($username, $password, $email){
+   function addNewUser($username, $password, $email,$ID_D){
       $time = time();
       /* If admin sign up, give admin user level */
       if(strcasecmp($username, ADMIN_NAME) == 0){
@@ -146,20 +146,24 @@ class MySQLDB
       }else{
          $ulevel = MASTER_LEVEL;
       }
-      $q = "INSERT INTO ".TBL_USERS." VALUES ('$username', '$password', '0', $ulevel, '$email')";
+      $q = "INSERT INTO ".TBL_USERS." VALUES ('$username', '$password', '0', $ulevel, '$email','$ID_D')";
       return mysqli_query($this->connection, $q);
    }
-  
    
    //add new Member
    function addNewMember($username, $password, $email){
    
       $time = time();
       $ulevel = AGENT_MEMBER_LEVEL;
-       $q = "INSERT INTO ".TBL_USERS." VALUES ('$username', '$password', '0', $ulevel, '$email')";
+       $q = "INSERT INTO ".TBL_USERS." VALUES ('$username', '$password', '$email','0',$ulevel )";
       return mysqli_query($this->connection, $q); 
    }
-   
+   //agregar nuevo dato
+   function addNewInfo($username, $password, $email,$ulevel){
+      $time = time();
+       $q = "INSERT INTO ".TBL_INFO." (`ID_D`, `Nombre_C`, `Correo`, `Telefono`, `Direccion`) VALUES (NULL,'$username', '$password', '$email',$ulevel )";
+      return mysqli_query($this->connection, $q); 
+   }
    /**
     * updateUserField - Updates a field, specified by the field
     * parameter, in the user's row of the database.

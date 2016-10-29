@@ -22,8 +22,8 @@ class Process
       }
 	  
 	      /* User submitted registration form */
-      else if(isset($_POST['master_subjoin'])){
-         $this->procMasterRegister();
+      else if(isset($_POST['dato_subjoin'])){
+         $this->procInfoRegister();
       }
 	  
 	      /* User submitted registration form */
@@ -183,7 +183,31 @@ class Process
          header("Location: ".$session->referrer.'?'.$session->username);
       }
    }
-   
+   function procinfoRegister(){
+      global $session, $form;
+
+      /* Registration attempt */
+      $retval = $session->SessionInfoRegister($_POST['Nombre'], $_POST['Telefono'], $_POST['email'],$_POST['Direccion']);
+      
+      /* Registration Successful */
+      if($retval == 0){
+         $_SESSION['reguname'] = $_POST['Nombre'];
+         $_SESSION['regsuccess'] = true;
+         header("Location: ".$session->referrer.'?'.$session->username);
+      }
+      /* Error found with form */
+      else if($retval == 1){
+         $_SESSION['value_array'] = $_POST;
+         $_SESSION['error_array'] = $form->getErrorArray();
+         header("Location: ".$session->referrer.'?'.$session->username);
+      }
+      /* Registration attempt failed */
+      else if($retval == 2){
+         $_SESSION['reguname'] = $_POST['Nombre'];
+         $_SESSION['regsuccess'] = false;
+         header("Location: ".$session->referrer.'?'.$session->username);
+      }
+   }
       
     function procAgentRegister(){
       global $session, $form;

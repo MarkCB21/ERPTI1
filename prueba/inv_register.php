@@ -14,7 +14,7 @@
 		if(($session->logged_in)&& ($session->isAdmin())){
 		?>
 
-		<h1>Añadir cajero</h1>
+		<h1>Añadir inventario</h1>
 		<?php
 		if($form->num_errors > 0){
 			echo "<td><font size=\"2\" color=\"#ff0000\">".$form->num_errors." error(s) found</font></td>";
@@ -22,7 +22,7 @@
 		?>
 		<form action="process.php" method="POST">
 			<table align="left" border="0" cellspacing="0" cellpadding="3">
-				<tr><td>Nombre:</td>
+				<tr><td>Categoria:</td>
 					<td><input type="text" 
 							   name="user" 
 							   maxlength="30" 
@@ -30,15 +30,15 @@
 					</td>
 					<td><?php echo $form->error("user"); ?></td>
 				</tr>
-				<tr><td>Contraseña:</td>
-					<td><input type="password" 
+				<tr><td>Nombre:</td>
+					<td><input type="text" 
 							   name="pass" 
 							   maxlength="30" 
 							   value="<?php echo $form->value("pass"); ?>">
 					</td>
 					<td><?php echo $form->error("pass"); ?></td>
 				</tr>
-				<tr><td>ID de dato:</td>
+				<tr><td>Precio:</td>
 					<td><input type="text" 
 							   name="email" 
 							   maxlength="50" 
@@ -46,12 +46,28 @@
 					</td>
 					<td><?php echo $form->error("email"); ?></td>
 				</tr>
+				<tr><td>Fecha:</td>
+					<td><input type="text" 
+							   name="fecha" 
+							   maxlength="50" 
+							   value="<?php echo $form->value("fecha"); ?>">
+					</td>
+					<td><?php echo $form->error("fecha"); ?></td>
+				</tr>
+				<tr><td>Stock:</td>
+					<td><input type="text" 
+							   name="stock" 
+							   maxlength="50" 
+							   value="<?php echo $form->value("stock"); ?>">
+					</td>
+					<td><?php echo $form->error("stock"); ?></td>
+				</tr>
 				<tr><td colspan="2" align="right">
 					<input type="hidden" 
-					       name="member_subjoin" 
+					       name="inv_subjoin" 
 						   value="1">
 					<input type="submit" 
-						   value="añadir cajero"></td>
+						   value="añadir inventario"></td>
 				</tr>
 			</table>
 		</form>
