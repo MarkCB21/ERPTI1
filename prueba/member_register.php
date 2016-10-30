@@ -4,12 +4,13 @@
 	<title></title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="diseños/style.css">
+	<link rel="stylesheet" type="text/css" href="diseños/styletf.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
 <div id="contendor">
 	<?php include("aside.php"); ?>
-	<div id="main2">
+	<div id="main">
 		<?php
 		if(($session->logged_in)&& ($session->isAdmin())){
 		?>

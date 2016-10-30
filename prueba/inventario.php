@@ -4,6 +4,7 @@
 	<title></title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="diseños/style.css">
+	<link rel="stylesheet" type="text/css" href="diseños/styletf.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <?php 
 		function mostrarproductos(){
@@ -46,7 +47,7 @@
 
  <?php include("aside.php"); ?>
  
-<div align="center" id="main2">
+<div align="center" id="main">
 <br><br><br><br>
 <p><table align="center" border="0" cellspacing="5" cellpadding="5">
 <tr><td>
@@ -67,6 +68,7 @@
 		<?php echo $form->error("updinv"); ?>
 		<form  action="adminprocess.php" method="POST">
 			<tr><td>
+				
 					ID inventario:<br>
 					<input type="text" name="updinv" maxlength="3" value="<?php echo $form->value("updinv"); ?>">
 				</td>

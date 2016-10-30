@@ -19,10 +19,16 @@ class AdminProcess
       else if(isset($_POST['subdeluser'])){
          $this->procDeleteUser();
       }
-	  else if(isset($_POST['subbanuser'])){
+	   else if(isset($_POST['subbanuser'])){
          $this->procBanUser();
-	  }
+	   }
       /* Should not get here, redirect to home page */
+      else if(isset($_POST['subupdstock'])){
+         $this->procUpdateStock();
+      }
+      else if(isset($_POST['subinv'])){
+         $this->procDeleteInv();
+      }
       else{
          header("Location: index.php");
       }
@@ -144,18 +150,18 @@ class AdminProcess
          header("Location: ".$session->referrer);
       }
    }
-function checkinv($uname, $ban=false){
+function checkinv($idinv, $ban=false){
       global $database, $form;
       /* Username error checking */
-      $subinv = $_POST[$uname];
-      $field = $uname;  //Use field name for username
-      if(!$subinv || strlen($subuser = trim($subuser)) == 0){
+      $subinv = $_POST[$idinv];
+      $field = $idinv;  //Use field name for idinventario
+      if(!$subinv || strlen($subinv = trim($subinv)) == 0){
          $form->setError($field, "* id no ingresado<br>");
       }
       else{
          /* Make sure username is in database */
          $subinv = stripslashes($subinv);
-         if(strlen($subinv) < 5 || strlen($subinv) > 30 ||
+         if(strlen($subinv) == 0 || strlen($subinv) > 30 ||
             !preg_match("/^([0-9a-z])+$/", $subinv) ||
             (!$ban && !$database->usernameTaken($subinv))){
             $form->setError($field, "* ID no existe<br>");

@@ -4,6 +4,7 @@
 	<title></title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="diseños/style.css">
+	<link rel="stylesheet" type="text/css" href="diseños/styletf.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<?php
 		function displayBannedUsers(){
@@ -33,13 +34,12 @@
 			echo "</table><br>\n";
 		}
 		function displayUsers(){
-			global $database;
-			$q = "SELECT username, userlevel,ID_D "
-			."FROM ".TBL_USERS." ORDER BY username DESC, userlevel";
-			$result = $database->query($q);
+			global $database;   
+			$q = "SELECT username, userlevel,ID_D "."FROM ".TBL_USERS." ORDER BY username DESC, userlevel";
+			$resultado = $database->query($q);
 /* se a producido un error asociado al nombre */
-			$num_rows = mysqli_num_rows($result);
-			if(!$result || ($num_rows < 0)){
+			$num_rows = mysqli_num_rows($resultado);
+			if(!$resultado || ($num_rows < 0)){
 			echo "Error displaying info";
 			return;
 		}
@@ -52,8 +52,8 @@
 		echo "<tr><td><b>Usuario</b></td><td><b>Nivel</b></td><td><b>ID_D</b></td></tr>\n";
 
 		for($i=0; $i<$num_rows; $i++){
-			mysqli_data_seek($result, $i);
-			$row=mysqli_fetch_row($result);
+			mysqli_data_seek($resultado, $i);
+			$row=mysqli_fetch_row($resultado);
 			$uname  = $row[0]; //username
 			$ulevel = $row[1]; //userlevel
 			$ID_D = $row[2]; //ID_D
@@ -66,7 +66,7 @@
 <body>
 <div id="contendor">
  <?php include("aside.php"); ?>
-	<div id="main2">
+	<div id="main">
 		<?php
 		if(!$session->isAdmin()){
 			header("Location: index.php");
