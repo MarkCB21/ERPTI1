@@ -36,7 +36,7 @@ for($i=0;$i<count($produc_com_ID_Produc);$i++)
 }
 echo "<tbody>\n</table>\n";
 echo "<form id='frm' action='algo.php' method='POST' hidden></form>";
-echo "<input type='button' class='modulo' value='Realizar Orden de Compra'>";
+echo "<input type='button' class='modulo' value='Realizar Orden de Compra' onclick=\"window.location = 'Realizar_Orden_de_Compra.php'\">";
 echo "</div>";
 ?>
 </body>

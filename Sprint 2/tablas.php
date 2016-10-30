@@ -19,7 +19,7 @@ if ($result = mysqli_query($link,$con))
     mysqli_free_result($result);
 }
 // Tabla comuna
-$con = "SELECT * FROM region";
+$con = "SELECT * FROM comuna";
 if ($result = mysqli_query($link,$con))
 {
 	$comuna_Nombre_Comuna = [];
