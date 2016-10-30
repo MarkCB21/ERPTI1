@@ -5,16 +5,31 @@ include "constantes.php";
 $link = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
 
 
-// Consulta Modelo
+// Tabla region
 $con = "SELECT ID_Region, Nombre_Region FROM region";
 if ($result = mysqli_query($link,$con))
 {
-	$Nombre_Region = [];
-	$ID_Region = [];
+	$region_Nombre_Region = [];
+	$region_ID_Region = [];
 	while ($row = mysqli_fetch_object($result))
 	{
-		array_push($Nombre_Region, $row->Nombre_Region);
-		array_push($ID_Region, $row->ID_Region);
+		array_push($region_Nombre_Region, $row->Nombre_Region);
+		array_push($region_ID_Region, $row->ID_Region);
+    }
+    mysqli_free_result($result);
+}
+// Tabla comuna
+$con = "SELECT * FROM region";
+if ($result = mysqli_query($link,$con))
+{
+	$comuna_Nombre_Comuna = [];
+	$comuna_ID_Region = [];
+	$comuna_ID_Comuna = [];
+	while ($row = mysqli_fetch_object($result))
+	{
+		array_push($comuna_Nombre_Comuna, $row->Nombre_Comuna);
+		array_push($comuna_ID_Region, $row->ID_Region);
+		array_push($comuna_ID_Comuna, $row->ID_Comuna);
     }
     mysqli_free_result($result);
 }

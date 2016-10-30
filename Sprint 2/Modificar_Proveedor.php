@@ -27,7 +27,7 @@ else
 				echo "
 					<div>
 						<label for='Nombre_Compania' class='form-label'>Nombre Compania</label>
-						<input id='Nombre_Compania' name='Compania' class='form-control' type='text' value='".$proveedores_Nombre_Compania[intval($ID_Prov)-1]."' readonly>
+						<input id='Nombre_Compania' class='form-control' type='text' value='".$proveedores_Nombre_Compania[intval($ID_Prov)-1]."' readonly>
 					</div>
 					<div>
 						<label for='ID_Rut' class='form-label'>Rut</label>
@@ -58,11 +58,15 @@ else
 						<input id='Direccion' name='Direccion' class='form-control' type='text' value='".$direccion_Direccion[intval($proveedores_ID_Direccion[intval($ID_Prov)-1])-1]."'>
 					</div>
 					<div>
+						<label for='Comuna' class='form-label'>Comuna</label>
+						<input id='Comuna' name='Comuna' class='form-control' type='text' value='".$comuna_Nombre_Comuna[intval($direccion_ID_Comuna[intval($proveedores_ID_Direccion[intval($ID_Prov)-1])-1])-1]."'>
+					</div>
+					<div>
 						<label for='Nombre_Local' class='form-label'>Nombre Local</label>
 						<input id='Nombre_Local' name='Nombre_Local' class='form-control' type='text' value='".$direccion_Nombre_Local[intval($proveedores_ID_Direccion[intval($ID_Prov)-1])-1]."'>
 					</div>
 					<div>
-						<input id='_Prov' name='ID_Prov' class='form-control' type='hidden' value='$ID_Prov'>
+						<input name='ID_Prov' type='hidenn' value='$ID_Prov'>
 					</div>
 				";
 				?>

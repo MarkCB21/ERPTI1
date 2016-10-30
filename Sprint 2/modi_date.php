@@ -1,29 +1,50 @@
 <?php
-	$con= mysqli_connect("localhost", "root", "", "erp-1");
+	include "constantes.php";
+	
+	$link= mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
-	$ID_Prov = $_POST['ID_Prov'];
-	$proveedor = $_POST['Compania'];
-	$rut = $_POST['ID_Rut'];
-	$nomC = $_POST['Nombre_C'];
-	$paterno = $_POST['Apellido_P'];
-	$materno = $_POST['Apellido_M'];
-	$correo = $_POST['Correo'];
-	$telefono = $_POST['Telefono'];
-	$nombreL = $_POST['Nombre_Local'];
+	$ID_Prov = $_POST['ID_Prov']
+	$ID_Rut = $_POST['ID_Rut'];
+	$Nombre_C = $_POST['Nombre_C'];
+	$Apellido_P = $_POST['Apellido_P'];
+	$Apellido_M = $_POST['Apellido_M'];
+	$Correo = $_POST['Correo'];
+	$Telefono = $_POST['Telefono'];
+	$Direccion = $_POST['Direccion'];
+	$Nombre_Local = $_POST['Nombre_Local'];
+	$Comuna = $_POST['Comuna'];
+	$con = "SELECT ID_Comuna 
+				FROM comuna
+			WHERE Nombre_Comuna='$Comuna';";
 
-	$actualizar = "UPDATE proveedores 
-					SET Nombre_Compania='$proveedor',
-					ID_Rut='$rut',
-					Nombre_C='$nomC',
-					Apellido_P='$paterno',
-					Apellido_M='$materno',
-					Correo='$correo',
-					Telefono='$telefono'
-					WHERE ID_Prov='$ID_Prov'";
+	$result = mysqli_query($link,$con);
+	$row = mysql_fetch_object($result);
+	$ID_Comuna = "$row->ID_Comuna";
+	mysql_free_result($result);
 
-	$con->query($actualizar);
-    if($con->errno) die($con->error);
+	$con = "UPDATE proveedores 
+				SET 
+					ID_Rut='$ID_Rut',
+					Nombre_C='$Nombre_C',
+					Apellido_P='$Apellido_P',
+					Apellido_M='$Apellido_M',
+					Correo='$Correo',
+					Telefono='$Telefono' 
+				WHERE
+					ID_Prov='$ID_Prov';
 
-	mysqli_close($con);
+			INSERT INTO direccion
+				VALUES(
+					NULL,
+					'$Direccion',
+					'$Nombre_Local',
+					'$ID_Comuna'
+				);
+			";
+
+	mysqli_query($link,$con)
+
+	mysqli_close($link);
+
 	header("location: Modulo_Proveedores.php");
 ?> 
