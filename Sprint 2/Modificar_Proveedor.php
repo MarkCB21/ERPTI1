@@ -22,12 +22,12 @@ else
 		<div class='cosa'>layout</div>
 		<div class='form-head'>Modificar Proveedor</div>
 		<div class='container'>
-			<form>
+			<form action="modi_date.php">
 				<?php
 				echo "
 					<div>
 						<label for='Nombre_Compania' class='form-label'>Nombre Compania</label>
-						<input id='Nombre_Compania' class='form-control' type='text' value='".$proveedores_Nombre_Compania[intval($ID_Prov)-1]."' readonly>
+						<input id='Nombre_Compania' name='Compania' class='form-control' type='text' value='".$proveedores_Nombre_Compania[intval($ID_Prov)-1]."' readonly>
 					</div>
 					<div>
 						<label for='ID_Rut' class='form-label'>Rut</label>
