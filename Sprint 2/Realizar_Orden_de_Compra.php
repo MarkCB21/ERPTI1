@@ -56,7 +56,6 @@
 				<div>
 					<label class="form-label" for="tipo_descuento">Tipo Descuento</label>
 					<select class="form-control" name='tipo_descuento' id='tipo_descuento'>
-						<option value="sin_descuento">Sin descuento</option>
 						<option value="descuento_%">Descuento %</option>
 						<option value="descuento_$">Descuento $</option>
 					</select>
