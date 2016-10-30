@@ -22,7 +22,7 @@ else
 		<div class='cosa'>layout</div>
 		<div class='form-head'>Modificar Proveedor</div>
 		<div class='container'>
-			<form action="modi_date.php">
+			<form action="modi_date.php" method="POST">
 				<?php
 				echo "
 					<div>
@@ -60,6 +60,9 @@ else
 					<div>
 						<label for='Nombre_Local' class='form-label'>Nombre Local</label>
 						<input id='Nombre_Local' name='Nombre_Local' class='form-control' type='text' value='".$direccion_Nombre_Local[intval($proveedores_ID_Direccion[intval($ID_Prov)-1])-1]."'>
+					</div>
+					<div>
+						<input id='_Prov' name='ID_Prov' class='form-control' type='hidden' value='$ID_Prov'>
 					</div>
 				";
 				?>
