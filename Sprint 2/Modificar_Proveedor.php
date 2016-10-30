@@ -18,11 +18,11 @@ else
 
 		</script>
 	</head>
-	<body onload="actdiv()">
+	<body onload="">
 		<div class='cosa'>layout</div>
 		<div class='form-head'>Modificar Proveedor</div>
 		<div class='container'>
-			<form action="modi_date.php" method="POST">
+			<form action="Programa_Modificar_Proveedor.php" method="POST">
 				<?php
 				echo "
 					<div>
@@ -31,7 +31,7 @@ else
 					</div>
 					<div>
 						<label for='ID_Rut' class='form-label'>Rut</label>
-						<input id='ID_Rut' name='ID_Rut' class='form-control' type='text' value='".$proveedores_ID_Rut[intval($ID_Prov)-1]."'>
+						<input id='ID_Rut' class='form-control' type='text' value='".$proveedores_ID_Rut[intval($ID_Prov)-1]."' readonly>
 					</div>
 					<div>
 						<label for='Nombre_C' class='form-label'>Nombre Completo</label>
@@ -66,7 +66,7 @@ else
 						<input id='Nombre_Local' name='Nombre_Local' class='form-control' type='text' value='".$direccion_Nombre_Local[intval($proveedores_ID_Direccion[intval($ID_Prov)-1])-1]."'>
 					</div>
 					<div>
-						<input name='ID_Prov' type='hidenn' value='$ID_Prov'>
+						<input name='ID_Prov' type='hidden' value='$ID_Prov'>
 					</div>
 				";
 				?>

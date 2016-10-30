@@ -8,7 +8,7 @@
 		<div class='cosa'>layout</div>
 		<div class='form-head'>Agregar Proveedor</div>
 		<div class='container'>
-			<form>
+			<form action="Programa_Agregar_Proveedor.php" method="POST">
 				<div>
 					<label for="Nombre_Compania" class="form-label">Nombre Compania</label>
 					<input id="Nombre_Compania" name="Nombre_Compania" class="form-control" type="text">
@@ -51,6 +51,10 @@
 				<div>
 					<label for="Direccion" class="form-label">Direccion</label>
 					<input id="Direccion" name="Direccion" class="form-control" type="text">
+				</div>
+				<div>
+					<label for="Comuna" class="form-label">Comuna</label>
+					<input id="Comuna" name="Comuna" class="form-control" type="text">
 				</div>
 				<div>
 					<label for="Nombre_Local" class="form-label">Nombre Local</label>

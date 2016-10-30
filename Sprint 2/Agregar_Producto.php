@@ -8,7 +8,7 @@
 		<div class='cosa'>layout</div>
 		<div class='form-head'>Agregar Producto</div>
 		<div class='container'>
-			<form>
+			<form action="Programa_Agregar_Producto.php" method="POST">
 				<div>
 					<label for="ID_Prov" class="form-label">Proveedor</label>
 					<select id="ID_Prov" name="ID_Prov" class="form-control">

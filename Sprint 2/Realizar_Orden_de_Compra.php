@@ -29,7 +29,7 @@
 		<div class='cosa'>layout</div>
 		<div class='form-head'>Realizar Orden de Compra</div>
 		<div class='container'>
-			<form action="ROrdenCompraF.php">
+			<form action="Programa_Realizar_Orden_de_Compra.php">
 				<div>
 					<label for="ID_Prov" class="form-label">Proveedor</label>
 					<select id="ID_Prov" name="ID_Prov" class="form-control">
@@ -66,6 +66,7 @@
 				</div>
 				<center>
 					<input class="btn" type="submit" value="Enviar">
+					<input class="btn" type="button" value="Cancelar" onclick="window.location='Modulo_Orden_de_Compra.php'">
 				</center>
 			</form>
 		</div>
