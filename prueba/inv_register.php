@@ -1,83 +1,122 @@
-<!DOCTYPE html>
-<html lang="es">
+<?php
+//Include the database connection file
+include "database_connection.php";
+
+//Check to see if the submit button has been clicked to process data
+if(isset($_POST["submitted"]) && $_POST["submitted"] == "yes")
+{
+	//Variables Assignment
+	$cat = trim(strip_tags($_POST['ID_Cat']));
+	$name = trim(strip_tags($_POST['Nombre']));
+	$price = trim(strip_tags($_POST['Precio']));
+	$stock = trim(strip_tags($_POST['Stock']));
+
+	
+	
+	//Validate against empty fields
+	if($cat == "" || $stock == "" || $name == "" || $price == "")
+	{
+		$error = '<br><div class="info">se requiere completar todos los campos</div><br>';
+	}
+	
+	else
+	{
+		if(mysql_query
+		("insert into `inventario` values
+		('', '".mysql_real_escape_string($cat)."', '".mysql_real_escape_string($name)."', '".mysql_real_escape_string($price)."', '".mysql_real_escape_string(date('d-m-Y'))."', '".mysql_real_escape_string($stock)."'
+		)
+		"))
+		{
+			header("location: dato.php");
+		}
+		else
+		{
+			$error = '<br><div class="info">su cuenta no pudo ser registrada</div><br>';
+		}
+	}
+}
+?>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title></title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="diseños/style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ingresar dato</title>
+
+
+
+
+<!-- Required header file -->
+<link href="css/style.css" rel="stylesheet" type="text/css">
+
+
+
+
+
 </head>
 <body>
-<div id="contendor">
-	<?php include("aside.php"); ?>
-	<div id="main2">
-		<?php
-		if(($session->logged_in)&& ($session->isAdmin())){
-		?>
+<center>
+<div style="font-family:Verdana, Geneva, sans-serif; font-size:24px;">ingresar inventario</div><br clear="all" /><br clear="all" />
 
-		<h1>Añadir inventario</h1>
-		<?php
-		if($form->num_errors > 0){
-			echo "<td><font size=\"2\" color=\"#ff0000\">".$form->num_errors." error(s) found</font></td>";
-		}
-		?>
-		<form action="process.php" method="POST">
-			<table align="left" border="0" cellspacing="0" cellpadding="3">
-				<tr><td>Categoria:</td>
-					<td><input type="text" 
-							   name="user" 
-							   maxlength="30" 
-					           value="<?php echo $form->value("user"); ?>">
-					</td>
-					<td><?php echo $form->error("user"); ?></td>
-				</tr>
-				<tr><td>Nombre:</td>
-					<td><input type="text" 
-							   name="pass" 
-							   maxlength="30" 
-							   value="<?php echo $form->value("pass"); ?>">
-					</td>
-					<td><?php echo $form->error("pass"); ?></td>
-				</tr>
-				<tr><td>Precio:</td>
-					<td><input type="text" 
-							   name="email" 
-							   maxlength="50" 
-							   value="<?php echo $form->value("email"); ?>">
-					</td>
-					<td><?php echo $form->error("email"); ?></td>
-				</tr>
-				<tr><td>Fecha:</td>
-					<td><input type="text" 
-							   name="fecha" 
-							   maxlength="50" 
-							   value="<?php echo $form->value("fecha"); ?>">
-					</td>
-					<td><?php echo $form->error("fecha"); ?></td>
-				</tr>
-				<tr><td>Stock:</td>
-					<td><input type="text" 
-							   name="stock" 
-							   maxlength="50" 
-							   value="<?php echo $form->value("stock"); ?>">
-					</td>
-					<td><?php echo $form->error("stock"); ?></td>
-				</tr>
-				<tr><td colspan="2" align="right">
-					<input type="hidden" 
-					       name="inv_subjoin" 
-						   value="1">
-					<input type="submit" 
-						   value="añadir inventario"></td>
-				</tr>
-			</table>
-		</form>
-		<?php
-		} 
-		else { 
-			header("Location: index.php");
-		}
-		?>
-	</div>
+
+
+
+
+<!-- Code Begins -->
+<center>
+<div class="vpb_main_wrapper">
+
+<br clear="all">
+<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+
+<div style="width:115px; padding-top:10px;float:left;" align="left">ID_Cat:</div>
+<div style="width:300px;float:left;" align="left"><input type="text" name="ID_Cat" id="ID_Cat"  class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
+
+
+<div style="width:115px; padding-top:10px;float:left;" align="left">Nombre producto:</div>
+<div style="width:300px;float:left;" align="left"><input type="text" name="Nombre" id="Nombre"  class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
+
+
+<div style="width:115px; padding-top:10px;float:left;" align="left">Precio:</div>
+<div style="width:300px;float:left;" align="left"><input type="text" name="Precio" id="Precio"  class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
+
+
+<div style="width:115px; padding-top:10px;float:left;" align="left">Stock:</div>
+<div style="width:300px;float:left;" align="left"><input type="text" name="Stock" id="Stock" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
+
+
+<div style="width:115px; padding-top:10px;float:left;" align="left">&nbsp;</div>
+<div style="width:300px;float:left;" align="left">
+<input type="hidden" name="submitted" id="submitted" value="yes">
+<input type="submit" name="submit" id="" value="Submit" style="margin-right:50px;" class="vpb_general_button">
+<a href="index.php" style="text-decoration:none;" class="vpb_general_button">volver al index</a>
+
 </div>
+
+</form>
+<br clear="all"><br clear="all">
+</div>
+</center>
+<!-- Code Ends -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom:160px;">&nbsp;</p>
+</center>
 </body>
 </html>

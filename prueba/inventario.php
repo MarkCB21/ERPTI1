@@ -63,41 +63,8 @@
 	<?php
 	if($session->isAdmin()){ 
 	?>
-		<table>
-		<h3>Actualizacion de Stock (en contruccion)</h3>
-		<?php echo $form->error("updinv"); ?>
-		<form  action="adminprocess.php" method="POST">
-			<tr><td>
-				
-					ID inventario:<br>
-					<input type="text" name="updinv" maxlength="3" value="<?php echo $form->value("updinv"); ?>">
-				</td>
-				<td>
-					Stock:<br>
-					<input type="text" name="updstock">
-				</td>
-				<td><br>
-					<input type="hidden" name="subupdstock" value="1">
-					<input type="submit" value="actualizar nivel ">
-				</td>
-			</tr>
-		</form>
-		</table><br><br><br><br>
-		<table>
-		<tr>
-			<td>
-				<h3>Eliminar producto (en contruccion)</h3>
-				<?php echo $form->error("delinv"); ?>
-				<form action="adminprocess.php" method="POST">
-					ID inventario:<br>
-					<input type="text" name="delinv" maxlength="30" value="<?php echo $form->value("delinv"); ?>">
-					<input type="hidden" name="subinv" value="1">
-					<input type="submit" value="Eliminar producto">
-				</form>
-			</td>
-		</tr>
-		</table>
-		
+		<a href="inv_register.php" style="text-decoration:none;" class="vpb_general_button">Crear inventario</a>
+		<a href="cat_register.php" style="text-decoration:none;" class="vpb_general_button">Crear categoria</a>
 
 <?php
 }}

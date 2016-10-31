@@ -82,6 +82,7 @@
 			<table align="left" border="0" cellspacing="5" cellpadding="5">
 			<tr><td>
 					<h3>Tabla de contenido de los usuarios</h3>
+					<a href="dato.php"  style="text-decoration:none;" class="vpb_general_button">crear dato</a>
 					<?php
 						displayUsers();
 					?>
