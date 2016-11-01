@@ -25,12 +25,12 @@ include("include/classes/UTF-8.php");
 
 	} else {
 		if($form->num_errors > 0){
-		   echo "<br><font  size=\"2\" color=\"#ff0000\">".$form->num_errors." error(s) found</font>";
+		   echo "<br><font  size=\"2\" color=\"#ff0000\">".$form->num_errors." errores encontrados</font>";
 	}
 ?>
 
 <br><br><br>
-    <img src="diseños/img/locatormedio.png" width="80" height="100" align="baseline"><br><br>
+    <img id="logo2" src="uploads/locatormedio.png" width="80" height="100" align="baseline"><br><br>
     <!-- <form action="process.php" method="POST"> -->
     <form  action="process.php" method="POST"> 
         <tr>
