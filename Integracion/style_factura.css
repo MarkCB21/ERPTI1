@@ -1,0 +1,17 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+#Factura{
+	width: 80%;
+	height:100vh; 
+	margin:auto;
+	border: 2px solid black;
+}
+#Nosotros{
+	width: 90%;
+	height:200px; 
+	margin:auto;
+	margin-top: 10px;
+	border: 2px solid red;
+}
