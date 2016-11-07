@@ -1,16 +1,5 @@
 <?php
 
-/*
-if ($result = mysqli_query($link,$con))
-{
-	while ($row = mysqli_fetch_object($result))
-	{
-		array_push(array, $row->);
-	}
-	mysqli_free_result($result);
-}
-*/
-
 include "constantes.php";
 
 $link = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
@@ -74,7 +63,7 @@ if ($result = mysqli_query($link,$con))
 	$datos_ApellidoM = [];
 	$datos_Correo = [];
 	$datos_Telefono = [];
-	$datos_ID_Direccion = [];
+	$datos_ID_direccion = [];
 	while ($row = mysqli_fetch_object($result))
 	{
 		array_push($datos_ID_Datos, $row->ID_Datos);
@@ -84,7 +73,7 @@ if ($result = mysqli_query($link,$con))
 		array_push($datos_ApellidoM, $row->ApellidoM);
 		array_push($datos_Correo, $row->Correo);
 		array_push($datos_Telefono, $row->Telefono);
-		array_push($datos_ID_Direccion, $row->ID_Direccion);
+		array_push($datos_ID_direccion, $row->ID_direccion);
 	}
 	mysqli_free_result($result);
 }
@@ -180,9 +169,9 @@ if ($result = mysqli_query($link,$con))
 $con = "SELECT * FROM documento";
 if ($result = mysqli_query($link,$con))
 {
-	$documento_ID_Doc
-	$documento_Descripcion
-	$documento_ID_Archivo
+	$documento_ID_Doc = [];
+	$documento_Descripcion = [];
+	$documento_ID_Archivo = [];
 	while ($row = mysqli_fetch_object($result))
 	{
 		array_push($documento_ID_Doc, $row->ID_Doc);
