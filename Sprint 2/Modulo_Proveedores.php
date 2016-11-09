@@ -33,10 +33,7 @@ for($i=0;$i<count($proveedores_ID_Prov);$i++)
 echo "<tbody>\n</table>\n";
 echo "<form id='frm' action='Modificar_Proveedor.php' method='POST' hidden></form>";
 echo "<input type='button' class='modulo' value='Agregar Proveedor' onclick=\"window.location='Agregar_Proveedor.php'\">";
-if(count($proveedores_ID_Prov))
-{
-	echo "<input type='button' class='modulo' value='Productos Proveedores' onclick=\"window.location='Modulo_Productos.php'\">";
-}
+echo "<input type='button' class='modulo' value='Productos Proveedores' onclick=\"window.location='Modulo_Productos.php'\">";
 echo "</div>";
 ?>
 </body>
