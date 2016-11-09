@@ -33,6 +33,10 @@ for($i=0;$i<count($productos_ID_Prod);$i++)
 echo "<tbody>\n</table>\n";
 echo "<form id='frm' action='Modificar_Producto.php' method='POST' hidden></form>";
 echo "<input type='button' class='modulo' value='Agregar Productos' onclick=\"window.location='Agregar_Producto.php'\">";
+if(count($productos_ID_Prod))
+{
+	echo "<input type='button' class='modulo' value='Modulo Orden de Compra' onclick=\"window.location='Modulo_Orden_de_Compra.php'\">";
+}
 echo "</div>";
 ?>
 </body>

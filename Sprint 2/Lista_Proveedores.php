@@ -19,13 +19,13 @@ echo "<thead onclick=\"window.location='Modulo_Proveedores.php'\">
 <th class='text-left'>ID_Prov</th>
 <th class='text-left'>Nombre_Compania</th>
 <th class='text-left'>Tipo_Proveedor</th>
-<th class='text-left'>ID_Rut</th>
+<th class='text-left'>Rut</th>
 <th class='text-left'>Nombre_C</th>
 <th class='text-left'>Apellido_P</th>
 <th class='text-left'>Apellido_M</th>
 <th class='text-left'>Correo</th>
 <th class='text-left'>Telefono</th>
-<th class='text-left'>ID_Direccion</th>
+<th class='text-left'>Direccion</th>
 </thead>\n";
 echo "<tbody class='table-hover'>\n";
 for($i=0;$i<count($proveedores_ID_Prov);$i++)

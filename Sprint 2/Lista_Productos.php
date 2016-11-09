@@ -44,7 +44,7 @@ for($i=0;$i<count($productos_ID_Prod);$i++)
 	</tr> \n"; 
 }
 echo "<tbody>\n</table>\n";
-echo "<form id='frm' action='algo.php' method='POST' hidden></form>";
+echo "<form id='frm' action='Modificar_Producto.php' method='POST' hidden></form>";
 echo "</div>";
 ?>
 </body>

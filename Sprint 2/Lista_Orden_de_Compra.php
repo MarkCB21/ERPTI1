@@ -19,7 +19,7 @@ echo "<div class='cosa'>layout</div>";
 echo "<div class='form-head'>Lista Orden de Compra</div>";
 echo "<div class='container'>";
 echo "<table class='table-fill'> \n"; 
-echo "<thead>
+echo "<thead onclick=\"window.location='Modulo_Orden_de_Compra.php'\">
 <th class='text-left'>ID_Produc</th>
 <th class='text-left'>ID_Compra</th>
 <th class='text-left'>Producto</th>
@@ -44,7 +44,7 @@ for($i=0;$i<count($produc_com_ID_Produc);$i++)
 	</tr> \n"; 
 }
 echo "<tbody>\n</table>\n";
-echo "<form id='frm' action='algo.php' method='POST' hidden></form>";
+echo "<form id='frm' action='Anular_Orden_de_Compra.php' method='POST' hidden></form>";
 echo "</div>";
 ?>
 </body>
