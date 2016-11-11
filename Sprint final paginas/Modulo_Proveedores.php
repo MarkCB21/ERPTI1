@@ -27,9 +27,9 @@ echo "<tbody class='table-hover'>\n";
 for($i=0;$i<count($proveedores_ID_Prov);$i++)
 {
 	echo "<tr onclick=redi(this) id='$proveedores_ID_Prov[$i]'>
-	<td class='text-left'>$proveedores_ID_Prov[$i]</td>
+	<td class='text-right'>$proveedores_ID_Prov[$i]</td>
 	<td class='text-left'>$proveedores_Nombre_Compania[$i]</td>
-	<td class='text-left'>$proveedores_Tipo_Proveedor[$i]</td>
+	<td class='text-left'>".$tipo_proveedores_Nombre[intval($proveedores_Tipo_Proveedor[$i])-1]."</td>
 	</tr> \n"; 
 }
 echo "<tbody>\n</table>\n";

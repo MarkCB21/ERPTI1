@@ -20,7 +20,7 @@ echo "<div class='container'>";
 echo "<table class='table-fill'> \n";
 echo "<thead onclick=\"window.location='Lista_Productos.php'\">
 <th class='text-left'>ID_Prod</th>
-<th class='text-left'>Nombre</th>
+<th class='text-left'>Descripcion</th>
 <th class='text-left'>Precio_Unitario</th>
 
 </thead>\n";
@@ -28,9 +28,9 @@ echo "<tbody class='table-hover'>\n";
 for($i=0;$i<count($productos_ID_Prod);$i++)
 {
 	echo "<tr onclick=redi(this) id='$productos_ID_Prod[$i]'>
-	<td class='text-left'>$productos_ID_Prod[$i]</td>
-	<td class='text-left'>$productos_Nombre[$i]</td>
-	<td class='text-left'>$productos_Precio_Unitario[$i]</td>
+	<td class='text-right'>$productos_ID_Prod[$i]</td>
+	<td class='text-left'>$productos_Descripcion[$i]</td>
+	<td class='text-right'>\$$productos_Precio_Unitario[$i]</td>
 	</tr> \n"; 
 }
 echo "<tbody>\n</table>\n";

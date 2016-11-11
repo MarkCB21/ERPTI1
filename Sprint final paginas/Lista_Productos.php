@@ -27,21 +27,17 @@ echo "<thead onclick=\"window.location='Modulo_Productos.php'\">
 <th class='text-left'>Nombre</th>
 <th class='text-left'>Precio_Unitario</th>
 <th class='text-left'>Fecha_Agregado</th>
-<th class='text-left'>Fecha_Modificacion</th>
-<th class='text-left'>Medida</th>
 <th class='text-left'>Proveedor</th>
 </thead>\n";
 echo "<tbody class='table-hover'>\n";
 for($i=0;$i<count($productos_ID_Prod);$i++)
 {
 	echo "<tr onclick=redi(this) id='$productos_ID_Prod[$i]'>
-	<td class='text-left'>$productos_ID_Prod[$i]</td>
+	<td class='text-right'>$productos_ID_Prod[$i]</td>
 	<td class='text-left'>".$categoria_Nombre[intval($productos_ID_Categoria[$i])-1]."</td>
-	<td class='text-left'>$productos_Nombre[$i]</td>
-	<td class='text-left'>$productos_Precio_Unitario[$i]</td>
-	<td class='text-left'>$productos_Fecha_Agregado[$i]</td>
-	<td class='text-left'>$productos_Fecha_Modificacion[$i]</td>
-	<td class='text-left'>$productos_Medida[$i]</td>
+	<td class='text-left'>$productos_Descripcion[$i]</td>
+	<td class='text-right'>\$$productos_Precio_Unitario[$i]</td>
+	<td class='text-center'>$productos_Fecha_Agregado[$i]</td>
 	<td class='text-left'>".$proveedores_Nombre_Compania[intval($productos_ID_Prov[$i])-1]."</td>	
 	</tr> \n"; 
 }

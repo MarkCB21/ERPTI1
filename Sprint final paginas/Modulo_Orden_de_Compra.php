@@ -22,18 +22,18 @@ echo "<div class='form-head'>Modulo Orden de Compra</div>";
 echo "<div class='container'>";
 echo "<table class='table-fill'> \n";
 echo "<thead onclick=\"window.location = 'Lista_Orden_de_Compra.php'\">
-<th class='text-left'>ID_Produc</th>
+<th class='text-left'>ID_Compraproducto</th>
 <th class='text-left'>Producto</th>
 <th class='text-left'>Cantidad</th>
 
 </thead>\n";
 echo "<tbody class='table-hover'>\n";
-for($i=0;$i<count($produc_com_ID_Produc);$i++)
+for($i=0;$i<count($produc_com_ID_Compraproducto);$i++)
 {
-	echo "<tr onclick=redi(this) id='$produc_com_ID_Produc[$i]'>
-	<td class='text-left'>$produc_com_ID_Produc[$i]</td>
-	<td class='text-left'>".$productos_Nombre[intval($produc_com_ID_Prod[$i])-1]."</td>
-	<td class='text-left'>$produc_com_Cantidad[$i]</td>
+	echo "<tr onclick=redi(this) id='$produc_com_ID_Compraproducto[$i]'>
+	<td class='text-right'>$produc_com_ID_Compraproducto[$i]</td>
+	<td class='text-left'>".$productos_Descripcion[intval($produc_com_ID_Prod[$i])-1]."</td>
+	<td class='text-right'>$produc_com_Cantidad[$i]</td>
 	</tr> \n"; 
 }
 echo "<tbody>\n</table>\n";
