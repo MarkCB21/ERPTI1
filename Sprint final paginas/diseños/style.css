@@ -31,7 +31,7 @@ transform:scale(1);
 #listas li a{
   
   text-decoration: none;
-  background-color:#fff;
+  background-color:#FFFFFF;
   background-size: 100%;
   background-repeat: no-repeat;  
   color: #3f608c; /*Blanco*/
@@ -42,7 +42,6 @@ transform:scale(1);
 }
 #listas li a:hover{ 
 	background: #808080;
-	padding: 10px;
 	color: #fff;                                                   
 	border-left: 10px solid #666;
 	}

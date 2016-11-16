@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
-<link href="style/style.css" rel="stylesheet" type="text/css">
 <link href="diseños/style.css" rel="stylesheet" type="text/css">
+<link href="style/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 	function redi(row)
 	{
@@ -14,10 +14,10 @@
 include "tablas.php";
 include "aside.php";
 echo "<div id='main'>";
-echo "<div class='form-head'>Modulo Proveedores</div>";
+echo "<div class='form-head'>Modulo Proveedores</div><div class='return' onclick=\"window.location='inicio.php'\">Volver</div>";
 echo "<div class='container'>";
-echo "<table class='table-fill'> \n";
-echo "<thead onclick=\"window.location='Lista_Proveedores.php'\">
+echo "<table class='table-fill' style='width:600px'> \n";
+echo "<thead>
 <th class='text-left'>ID_Prov</th>
 <th class='text-left'>Nombre_Compania</th>
 <th class='text-left'>Tipo_Proveedor</th>
@@ -32,8 +32,8 @@ for($i=0;$i<count($proveedores_ID_Prov);$i++)
 	<td class='text-left'>".$tipo_proveedores_Nombre[intval($proveedores_Tipo_Proveedor[$i])-1]."</td>
 	</tr> \n"; 
 }
-echo "<tbody>\n</table>\n";
-echo "<form id='frm' action='Modificar_Proveedor.php' method='POST' hidden></form>";
+echo "</tbody>\n</table>\n";
+echo "<form id='frm' action='Datos_Proveedor.php' method='POST' hidden></form>";
 echo "<input type='button' class='modulo' value='Agregar Proveedor' onclick=\"window.location='Agregar_Proveedor.php'\">";
 if(count($proveedores_ID_Prov))
 {

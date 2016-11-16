@@ -15,10 +15,10 @@
 include "tablas.php";
 include "aside.php";
 echo "<div id='main'>";
-echo "<div class='form-head'>Modulo Productos</div>";
+echo "<div class='form-head'>Modulo Productos</div><div class='return' onclick=\"window.location='Modulo_Proveedores.php'\">Volver</div>";
 echo "<div class='container'>";
-echo "<table class='table-fill'> \n";
-echo "<thead onclick=\"window.location='Lista_Productos.php'\">
+echo "<table class='table-fill' style='width:600px'> \n";
+echo "<thead>
 <th class='text-left'>ID_Prod</th>
 <th class='text-left'>Descripcion</th>
 <th class='text-left'>Precio_Unitario</th>
@@ -34,12 +34,8 @@ for($i=0;$i<count($productos_ID_Prod);$i++)
 	</tr> \n"; 
 }
 echo "<tbody>\n</table>\n";
-echo "<form id='frm' action='Modificar_Producto.php' method='POST' hidden></form>";
+echo "<form id='frm' action='Datos_Producto.php' method='POST' hidden></form>";
 echo "<input type='button' class='modulo' value='Agregar Productos' onclick=\"window.location='Agregar_Producto.php'\">";
-if(count($productos_ID_Prod))
-{
-	echo "<input type='button' class='modulo' value='Modulo Orden de Compra' onclick=\"window.location='Modulo_Orden_de_Compra.php'\">";
-}
 echo "</div>";
 echo "</div>";
 ?>
