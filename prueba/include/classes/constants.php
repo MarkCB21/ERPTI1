@@ -18,6 +18,7 @@ define("DB_NAME", "erp-1");
  * in the script.
  */
 define("TBL_USERS", "login_usuarios");
+define("TBL_INFO", "datos");
 define("TBL_INVENTARIO", "inventario");
 define("TBL_ACTIVE_USERS",  "active_users");
 define("TBL_ACTIVE_GUESTS", "active_guests");
@@ -33,10 +34,10 @@ define("TBL_BANNED_USERS",  "banned_users");
  */
 define("ADMIN_NAME", "admin");    //1. admin conrol all
 define("GUEST_NAME", "Guest");   
-define("ADMIN_LEVEL", 2);        // 2. admin level .. control the master
+define("ADMIN_LEVEL", 2);        // 2. admin level 
 define("AGENT_MEMBER_LEVEL", 1); // 5. agent member level .. member control his/her own account
 define("GUEST_LEVEL", 0);        // 6. guest level .. guest only control himself
-
+define("BANNED_LEVEL", 3);        
 /**
  * This boolean constant controls whether or
  * not the script keeps track of active users

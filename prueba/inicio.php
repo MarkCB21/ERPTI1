@@ -10,6 +10,7 @@
 <div id="contendor">
 <?php include("aside.php"); ?>
 	<div id="main">
+	  <?php if(($session->logged_in) or (!$session->isBan() )){ ?>
 		<ul id="Botoon">
 			<a href="boleta.php" id="Item1">
 				<li class="menuP">
@@ -74,6 +75,15 @@
               }
             ?>
 		</ul>
+	 <?php
+        }
+		else if ($session->isBan){
+			header('Location: baneado.php');
+		}
+		else {
+			header('Location: index.php');
+		}
+     ?>
 	</div>
 </div>
 </body>

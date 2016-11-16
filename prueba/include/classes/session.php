@@ -6,96 +6,97 @@ include("form.php");
 
 class Session
 {
-   var $username;     //nombre de usuario
-   var $userid;       //valor aleatorio generado en el inicio de sesion actual 
-   var $userlevel;    //nivel al que corresponde el usuario
-   var $time;         //tiempo que el usuario aestado en la pag 
-   var $logged_in;    //verdadero si el usuario esta conectado, falso si no
+   var $username;            //nombre de usuario
+   var $userid;              //valor aleatorio generado en el inicio de sesion actual 
+   var $userlevel;           //nivel al que corresponde el usuario
+   var $time;                //tiempo que el usuario aestado en la pag 
+   var $logged_in;           //verdadero si el usuario esta conectado, falso si no
    var $userinfo = array();  //arreglo que contiene toda la informacion del usuario
-   var $url;          //url de la pag que se esta viendo actualmente
-   var $referrer;     //ultima pag vista
+   var $url;                 //url de la pag que se esta viendo actualmente
+   var $referrer;            //ultima pag vista
    /**
-    * Note: referrer should really only be considered the actual
-    * page referrer in process.php, any other time it may be
-    * inaccurate.
+    * Nota: Sólo se considerara la referencia de pagina real
+    * en process.php, en cualquier otro momento que no sea exacta.
     */
 
-   /* Class constructor */
+   /* clase constructor */
    function Session(){
       $this->time = time();
       $this->startSession();
    }
 
    /**
-    * startSession - Performs all the actions necessary to 
-    * initialize this session object. Tries to determine if the
-    * the user has logged in already, and sets the variables 
-    * accordingly. Also takes advantage of this page load to
-    * update the active visitors tables.
+    * StartSession - Lleva a cabo todas las acciones
+    * necesarias para iniciar sesion.
+    * Trata de determinar si el usuario ha iniciado
+    * sesion, y establece las variables necesarias. 
+    * Tambien se aprovecha de esta carga de la pagina
+    * para actualizar las tablas de visitantes activos.
     */
    function startSession(){
-      global $database;  //The database connection
-      session_start();   //Tell PHP to start the session
+      global $database;  //La conexion a la base de datos
+      session_start();   //Dice a PHP para iniciar la sesion
 
-      /* Determine if user is logged in */
+      /* Determina si el usuario esta logeado */
       $this->logged_in = $this->checkLogin();
 
       /**
-       * Set guest value to users not logged in, and update
-       * active guests table accordingly.
+       * Valor de invitados a los usuarios
+       * no registrados, y actualizacion de tabla de
+       * clientes activos en consecuencia.
        */
       if(!$this->logged_in){
          $this->username = $_SESSION['username'] = GUEST_NAME;
          $this->userlevel = GUEST_LEVEL;
          $database->addActiveGuest($_SERVER['REMOTE_ADDR'], $this->time);
       }
-      /* Update users last active timestamp */
+      /* Actualiza usuarios activos actualmente */
       else{
          $database->addActiveUser($this->username, $this->time);
       }
       
-      /* Remove inactive visitors from database */
+      /* Retira los visitantes inactivos de la base de datos */
       $database->removeInactiveUsers();
       $database->removeInactiveGuests();
       
-      /* Set referrer page */
+      /* La pagina de conjunto de referencia */
       if(isset($_SESSION['url'])){
          $this->referrer = $_SESSION['url'];
       }else{
          $this->referrer = "/";
       }
 
-      /* Set current url */
+      /* Establece URL actual */
       $this->url = $_SESSION['url'] = $_SERVER['PHP_SELF'];
    }
 
    /**
-    * checkLogin - Checks if the user has already previously
-    * logged in, and a session with the user has already been
-    * established. Also checks to see if user has been remembered.
-    * If so, the database is queried to make sure of the user's 
-    * authenticity. Returns true if the user has logged in.
+    * checkLogin - Comprueba si el usuario ya ha iniciado una sesion
+    * previamente, y si ya se ha establecido una sesión con el usuario.
+    * Tambien comprueba si el usuario ha "recordado". Si es asi, la base
+    * de datos se consulta para asegurarse de la autenticidad del usuario.
+    * Devuelve true (Verdadero) si el usuario ha iniciado sesion.
     */
    function checkLogin(){
-      global $database;  //The database connection
-      /* Check if user has been remembered */
+      global $database;  //La conexion a la base de datos
+      /* Comprueba si el usuario se ha "recordado" */
       if(isset($_COOKIE['cookname']) && isset($_COOKIE['cookid'])){
          $this->username = $_SESSION['username'] = $_COOKIE['cookname'];
          $this->userid   = $_SESSION['userid']   = $_COOKIE['cookid'];
       }
 
-      /* Username and userid have been set and not guest */
+      /* Verifica si el Nombre de usuario y la ID de usuario se han establecido y no es invitado */
       if(isset($_SESSION['username']) && isset($_SESSION['userid']) &&
          $_SESSION['username'] != GUEST_NAME){
-         /* Confirm that username and userid are valid */
+         /* confirma que el nombre y la id son validas */
          if($database->confirmUserID($_SESSION['username'], $_SESSION['userid']) != 0){
-            /* Variables are incorrect, user not logged in */
+            /* Si las variables son incorrectas, el usuario no esta logeado */
             unset($_SESSION['username']);
             unset($_SESSION['userid']);
             return false;
          }
 
-         /* User is logged in, set class variables */
+         /* El usuario esta logeado, establese clase y variables */
          $this->userinfo  = $database->getUserInfo($_SESSION['username']);
          $this->username  = $this->userinfo['username'];
          $this->userid    = $this->userinfo['userid'];
@@ -103,49 +104,49 @@ class Session
          $_SESSION['userlevel']=$this->userlevel;
          return true;
       }
-      /* User not logged in */
+      /* Usuario no logeado */
       else{
          return false;
       }
    }
 
    /**
-    * login - The user has submitted his username and password
-    * through the login form, this function checks the authenticity
-    * of that information in the database and creates the session.
-    * Effectively logging in the user if all goes well.
+    * Login - El usuario ha enviado su nombre de usuario y contraseña
+    * a través del formulario de acceso, esta funcion verifica
+    * la autenticidad de esa informacion en la base de datos y
+    * crea la sesion. Efectivamente la tala en el usuario, si todo va bien.
     */
    function login($subuser, $subpass, $subremember){
-      global $database, $form;  //The database and form object
+      global $database, $form;  //La base de datos y el formulario
 
-      /* Username error checking */
-      $field = "user";  //Use field name for username
+      /* Comprueba errores de nombre de usuario */
+      $field = "user";  //usa el nombre del campo de nombre de usuario
       if(!$subuser || strlen($subuser = trim($subuser)) == 0){
-         $form->setError($field, "* Usuario no encontrado");
+         $form->setError($field, "* Usuario no ingresado");
       }
       else{
-         /* Check if username is not alphanumeric */
+         /* Comprueba que el nombre de usuario no sea alfanumerico */
          if(!preg_match("/^([0-9a-z])*$/", $subuser)){
             $form->setError($field, "* nombre de usuario no alfanumerico");
          }
       }
 
-      /* Password error checking */
-      $field = "pass";  //Use field name for password
+      /* Comprueba errores de contraseña */
+      $field = "pass";  //Usa el nombre del campo de contraseña
       if(!$subpass){
          $form->setError($field, "* contraseña no ingresada");
       }
       
-      /* Return if form errors exist */
+      /* Vuelve si existen errores de formulario */
       if($form->num_errors > 0){
          return false;
       }
 
-      /* Checks that username is in database and password is correct */
+      /* Comprueba que el nombre de usuario y la contraseña esten en la base de datos y esten correctos */
       $subuser = stripslashes($subuser);
       $result = $database->confirmUserPass($subuser, md5($subpass));
 
-      /* Check error codes */
+      /* Comprueba errores de codigo */
       if($result == 1){
          $field = "user";
          $form->setError($field, "* Usuario no encontrado");
@@ -155,92 +156,90 @@ class Session
          $form->setError($field, "* contraseña invalida");
       }
       
-      /* Return if form errors exist */
+      /* Vuelve si existen errores de formulario */
       if($form->num_errors > 0){
          return false;
       }
 
-      /* Username and password correct, register session variables */
+      /* Nombre de usuario y contraseña correctos, registra variables de secion */
       $this->userinfo  = $database->getUserInfo($subuser);
       $this->username  = $_SESSION['username'] = $this->userinfo['username'];
       $this->userid    = $_SESSION['userid']   = $this->generateRandID();
       $this->userlevel = $this->userinfo['userlevel'];
       
-      /* Insert userid into database and update active users table */
+      /* inserta id de usuario en la base de datos y actualiza la tabla de usuarios activos */
       $database->updateUserField($this->username, "userid", $this->userid);
       $database->addActiveUser($this->username, $this->time);
       $database->removeActiveGuest($_SERVER['REMOTE_ADDR']);
 
       /**
-       * This is the cool part: the user has requested that we remember that
-       * he's logged in, so we set two cookies. One to hold his username,
-       * and one to hold his random value userid. It expires by the time
-       * specified in constants.php. Now, next time he comes to our site, we will
-       * log him in automatically, but only if he didn't log out before he left.
+       * El usuario ha solicitado que recordemos que ha iniciado la sesion,
+       * por lo que establecer dos cookies. Una para sujetar su nombre de usuario
+       * y una para sujetar a su valor de identificador de usuario al azar. De que
+       * caduque el tiempo especificado en constants.php. Ahora, la proxima vez que
+       * viene a nuestro sitio, lo vamos a conectarse de forma automatica,
+       * pero solo si el no cerrar la sesion antes de marcharse.
        */
       if($subremember){
          setcookie("cookname", $this->username, time()+COOKIE_EXPIRE, COOKIE_PATH);
          setcookie("cookid",   $this->userid,   time()+COOKIE_EXPIRE, COOKIE_PATH);
       }
 
-      /* Login completed successfully */
+      /* Inicio de secion hecho satisfactoriamente */
       return true;
    }
 
    /**
-    * logout - Gets called when the user wants to be logged out of the
-    * website. It deletes any cookies that were stored on the users
-    * computer as a result of him wanting to be remembered, and also
-    * unsets session variables and demotes his user level to guest.
+    * logout - Se llama cuando el usuario quiere estar desconectado
+    * de la pagina web. Borra todas las cookies que se quedaran almacenadas
+    * en el ordenador del usuario como resultado de lo que quiera ser recordado,
+    * y tambien lo elimina variables de sesion y degrada su nivel de usuario invitado.
     */
    function logout(){
-      global $database;  //The database connection
+      global $database;  //La conexion a la base de datos
       /**
-       * Delete cookies - the time must be in the past,
-       * so just negate what you added when creating the
-       * cookie.
+       * Delete cookies - si el tiempo limite ya pasado, niega lo que ha añadido al crear la cookie.
        */
       if(isset($_COOKIE['cookname']) && isset($_COOKIE['cookid'])){
          setcookie("cookname", "", time()-COOKIE_EXPIRE, COOKIE_PATH);
          setcookie("cookid",   "", time()-COOKIE_EXPIRE, COOKIE_PATH);
       }
 
-      /* Unset PHP session variables */
+      /* Elimina variables de sesion */
       unset($_SESSION['username']);
       unset($_SESSION['userid']);
 
-      /* Reflect fact that user has logged out */
+      /* establece que el usuario ha cerrado la sesion */
       $this->logged_in = false;
       
       /**
-       * Remove from active users table and add to
-       * active guests tables.
+       * Sacar de la tabla usuarios activos y
+       * añadir a las tablas huespedes activos.
        */
       $database->removeActiveUser($this->username);
       $database->addActiveGuest($_SERVER['REMOTE_ADDR'], $this->time);
       
-      /* Set user level to guest */
+      /* Ajusta el nivel de usuario de alojamiento */
       $this->username  = GUEST_NAME;
       $this->userlevel = GUEST_LEVEL;
    }
 
    /**
-    * register - Gets called when the user has just submitted the
-    * registration form. Determines if there were any errors with
-    * the entry fields, if so, it records the errors and returns
-    * 1. If no errors were found, it registers the new user and
-    * returns 0. Returns 2 if registration failed.
+    * se llama cuando el usuario acaba de presentar el formulario de registro.
+    * Determina si hubo algún error con los campos de entrada, si es así, registra
+    * los errores y devuelve 1. Si no se encuentran errores, se registra el nuevo usuario
+    * y devuelve 0. devuelve 2 si el registro ha fallado.
     */
    function register($subuser, $subpass, $subemail){
-      global $database, $form, $mailer;  //The database, form and mailer object
+      global $database, $form, $mailer;  //La base de datos, el formulario y el objeto mailer
       
-      /* Username error checking */
-      $field = "user";  //Use field name for username
+      /* comprueba errores de nombre de usuario */
+      $field = "user";  //usa el nombre del campo de nombre de usuario
       if(!$subuser || strlen($subuser = trim($subuser)) == 0){
          $form->setError($field, "* Usuario no encontrado");
       }
       else{
-         /* Spruce up username, check length */
+         /* Arregla nombre de usuario, mirar duración */
          $subuser = stripslashes($subuser);
          if(strlen($subuser) < 5){
             $form->setError($field, "* Username below 5 characters");
@@ -248,54 +247,53 @@ class Session
          else if(strlen($subuser) > 30){
             $form->setError($field, "* Username above 30 characters");
          }
-         /* Check if username is not alphanumeric */
+         /* Confirma que el nombre de usuario no sea alfanumerico */
          else if(!preg_match("/^([0-9a-z_])+$/", $subuser)){
             $form->setError($field, "* Username not alphanumeric");
          }
-         /* Check if username is reserved */
+         /* confirma que el nombre de usuario haya sido reservado */
          else if(strcasecmp($subuser, GUEST_NAME) == 0){
             $form->setError($field, "* Username reserved word");
          }
-         /* Check if username is already in use */
+         /* confirma si el nombre de usuario esta en uso */
          else if($database->usernameTaken($subuser)){
             $form->setError($field, "* Username already in use");
          }
-         /* Check if username is banned */
+         /* Confirma que el usuario no este banneado */
          else if($database->usernameBanned($subuser)){
             $form->setError($field, "* usuario baneado");
          }
       }
 
-      /* Password error checking */
-      $field = "pass";  //Use field name for password
+      /* comprueba errores de contraseña */
+      $field = "pass";  //Usa el nombre del campo de contraseña
       if(!$subpass){
          $form->setError($field, "* Contraseña invalida");
       }
       else{
-         /* Spruce up password and check length*/
+         /* Arregla la contraseña, mirar duración*/
          $subpass = stripslashes($subpass);
          if(strlen($subpass) < 4){
             $form->setError($field, "* contraseña muy corta");
          }
-         /* Check if password is not alphanumeric */
+         /* comprueba que la contraseña no sea alfanumerica */
          else if(!preg_match("/^([0-9a-z])+$/", ($subpass = trim($subpass)))){
             $form->setError($field, "* contraseña no alfanumerica");
          }
          /**
-          * Note: I trimmed the password only after I checked the length
-          * because if you fill the password field up with spaces
-          * it looks like a lot more characters than 4, so it looks
-          * kind of stupid to report "password too short".
+          * Nota: He recortado la contraseña sólo después de que haya comprobado la longitud
+          * ya que si se llena el campo de la contraseña con espacios que parece
+          * mucho más caracteres de 4, por lo que parece un poco estúpido reportar "contraseña demasiado corta".
           */
       }
       
-      /* Email error checking */
-      $field = "email";  //Use field name for email
+      /* comprueba errores de correo electronico */
+      $field = "email";  //Usa el nombre del campo de email
       if(!$subemail || strlen($subemail = trim($subemail)) == 0){
          $form->setError($field, "* Email no ingresado");
       }
       else{
-         /* Check if valid email address */
+         /* comprueba que sea una direccion de correo electronico valida */
          $regex = "/^[_+a-z0-9-]+(\.[_+a-z0-9-]+)*"
                  ."@[a-z0-9-]+(\.[a-z0-9-]{1,})*"
                  ."\.([a-z]{2,}){1}$/";
@@ -305,34 +303,34 @@ class Session
          $subemail = stripslashes($subemail);
       }
 
-      /* Errors exist, have user correct them */
+      /* si existen errores los corrige el usuario */
       if($form->num_errors > 0){
          return 1;  //Errors with form
       }
-      /* No errors, add the new account to the */
+      /* Si no hay errores, agregue la nueva cuenta a la base de datos*/
       else{
          if($database->addNewUser($subuser, md5($subpass), $subemail)){
             if(EMAIL_WELCOME){
                $mailer->sendWelcome($subuser,$subemail,$subpass);
             }
-            return 0;  //New user added succesfully
+            return 0;  //Nuevo usuario agregado con exito
          }else{
-            return 2;  //Registration attempt failed
+            return 2;  //intento de registro fallido
          }
       }
    }
    
     function SessionMasterRegister($subuser, $subpass, $subemail){
 	  
-	  global $database, $form, $mailer;  //The database, form and mailer object
+	  global $database, $form, $mailer;  //La base de datos, el formulario y el objeto meiler
       
-      /* Username error checking */
-      $field = "user";  //Use field name for username
+      /* comprobando errores de nombre de usuario */
+      $field = "user";  //usa el nombre del campo nombre de usuario
       if(!$subuser || strlen($subuser = trim($subuser)) == 0){
          $form->setError($field, "* Username not entered");
       }
       else{
-         /* Spruce up username, check length */
+         /* Arregla nombre de usuario, mirar duración */
          $subuser = stripslashes($subuser);
          if(strlen($subuser) < 5){
             $form->setError($field, "* Username below 5 characters");
@@ -340,15 +338,15 @@ class Session
          else if(strlen($subuser) > 30){
             $form->setError($field, "* Username above 30 characters");
          }
-         /* Check if username is not alphanumeric */
+         /* Comprueba que el nombre de usuario no sea alfanumerico */
          else if(!preg_match("/^([0-9a-z])+$/", $subuser)){
             $form->setError($field, "* Username not alphanumeric");
          }
-         /* Check if username is reserved */
+         /* comprueba que el nombre de usuario este reservado */
          else if(strcasecmp($subuser, GUEST_NAME) == 0){
             $form->setError($field, "* Username reserved word");
          }
-         /* Check if username is already in use */
+         /* comprueba que el nombre de usuario no este registrado */
          else if($database->usernameTaken($subuser)){
             $form->setError($field, "* Username already in use");
          }
@@ -374,20 +372,19 @@ class Session
             $form->setError($field, "* Password not alphanumeric");
          }
          /**
-          * Note: I trimmed the password only after I checked the length
-          * because if you fill the password field up with spaces
-          * it looks like a lot more characters than 4, so it looks
-          * kind of stupid to report "password too short".
+          * Nota: He recortado la contraseña sólo después de que haya comprobado la longitud
+          * ya que si se llena el campo de la contraseña con espacios que parece
+          * mucho más caracteres de 4, por lo que parece un poco estúpido reportar "contraseña demasiado corta".
           */
       }
       
-      /* Email error checking */
-      $field = "email";  //Use field name for email
+      /* comprueba errores de correo electronico */
+      $field = "email";  //usa el campo email
       if(!$subemail || strlen($subemail = trim($subemail)) == 0){
          $form->setError($field, "* Email not entered");
       }
       else{
-         /* Check if valid email address */
+         /* comprueba si es un email valido */
          $regex = "/^[_+a-z0-9-]+(\.[_+a-z0-9-]+)*"
                  ."@[a-z0-9-]+(\.[a-z0-9-]{1,})*"
                  ."\.([a-z]{2,}){1}$/";
@@ -397,11 +394,11 @@ class Session
          $subemail = stripslashes($subemail);
       }
 
-      /* Errors exist, have user correct them */
+      /* si existen errores los corrige el usuario */
       if($form->num_errors > 0){
          return 1;  //Errors with form
       }
-      /* No errors, add the new account to the */
+      /* Si no hay errores, agregue la nueva cuenta a la base de datos */
       else{
 	  //THE NAME OF THE CURRENT USER THE PARENT...
 	  $parent = $this->username;
@@ -409,9 +406,9 @@ class Session
             if(EMAIL_WELCOME){
                $mailer->sendWelcome($subuser,$subemail,$subpass);
             }
-            return 0;  //New user added succesfully
+            return 0;  //nuevo usuario agregado con exito
          }else{
-            return 2;  //Registration attempt failed
+            return 2;  //intento de registro fallido
          }
       }
    }
@@ -419,15 +416,15 @@ class Session
    
   function SessionMemberRegister($subuser, $subpass, $subemail){
 	  
-	  global $database, $form, $mailer;  //The database, form and mailer object
+	  global $database, $form, $mailer;  //La base de datos, el formulario y el objeto mailer
       
-      /* Username error checking */
-      $field = "user";  //Use field name for username
+      /* comprueba errores de nombre de usuario */
+      $field = "user";  //Usa el nombre del campo username
       if(!$subuser || strlen($subuser = trim($subuser)) == 0){
          $form->setError($field, "* Username not entered");
       }
       else{
-         /* Spruce up username, check length */
+         /* Arregla nombre de usuario, mirar duración */
          $subuser = stripslashes($subuser);
          if(strlen($subuser) < 5){
             $form->setError($field, "* Username below 5 characters");
@@ -435,36 +432,36 @@ class Session
          else if(strlen($subuser) > 30){
             $form->setError($field, "* Username above 30 characters");
          }
-         /* Check if username is not alphanumeric */
+         /* Comprueba que el nombre de usuario no sea alfanumerico */
          else if(!preg_match("/^([0-9a-z])+$/", $subuser)){
             $form->setError($field, "* Username not alphanumeric");
          }
-         /* Check if username is reserved */
+         /* verifica si el username esta reservado */
          else if(strcasecmp($subuser, GUEST_NAME) == 0){
             $form->setError($field, "* Username reserved word");
          }
-         /* Check if username is already in use */
+         /* comprueba que el nombre de usuario no este utilizado */
          else if($database->usernameTaken($subuser)){
             $form->setError($field, "* Username already in use");
          }
-         /* Check if username is banned */
+         /* verifica si el nombre de usuario esta banneado */
          else if($database->usernameBanned($subuser)){
             $form->setError($field, "* Username banned");
          }
       }
 
-      /* Password error checking */
-      $field = "pass";  //Use field name for password
+      /* Comprueba errores de contraseña */
+      $field = "pass";  //Usa el campo contraseña
       if(!$subpass){
          $form->setError($field, "* Password not entered");
       }
       else{
-         /* Spruce up password and check length*/
+         /* Arregla la contraseña, mirar duración*/
          $subpass = stripslashes($subpass);
          if(strlen($subpass) < 4){
             $form->setError($field, "* Password too short");
          }
-         /* Check if password is not alphanumeric */
+         /* comprueba que la contraseña no sea alfanumerica */
          else if(!preg_match("/^([0-9a-z])+$/", ($subpass = trim($subpass)))){
             $form->setError($field, "* Password not alphanumeric");
          }
@@ -483,9 +480,7 @@ class Session
       }
       else{
          /* Check if valid email address */
-         $regex = "/^[_+a-z0-9-]+(\.[_+a-z0-9-]+)*"
-                 ."@[a-z0-9-]+(\.[a-z0-9-]{1,})*"
-                 ."\.([a-z]{2,}){1}$/";
+         $regex = "/[0-9]{1}/";
          if(!preg_match($regex,$subemail)){
             $form->setError($field, "* Email invalid");
          }
@@ -510,7 +505,81 @@ class Session
          }
       }
    }
-   
+   function SessionInfoRegister($subuser, $subpass, $subemail,$subdireccion){
+	  
+	  global $database, $form, $mailer;  //La base de datos, el formulario y el objeto mailer
+      
+      /* comprueba errores de nombre de usuario */
+      $field = "Nombre";  //Usa el nombre del campo username
+      if(!$subuser || strlen($subuser = trim($subuser)) == 0){
+         $form->setError($field, "* Username not entered");
+      }
+      else{
+         /* Arregla nombre de usuario, mirar duración */
+         $subuser = stripslashes($subuser);
+         if(strlen($subuser) < 5){
+            $form->setError($field, "* Username below 5 characters");
+         }
+         else if(strlen($subuser) > 30){
+            $form->setError($field, "* Username above 30 characters");
+         }
+         /* Comprueba que el nombre de usuario no sea alfanumerico */
+         else if(preg_match("/^([0-9a-z])+$/", $subuser)){
+            $form->setError($field, "* Nombre no tiene que hacer alfanumerico");
+         }
+         /* verifica si el username esta reservado */
+         else if(strcasecmp($subuser, GUEST_NAME) == 0){
+            $form->setError($field, "* Username reserved word");
+         }
+      }
+
+      /* Comprueba errores de telefono */
+      $field = "Telefono";  //Usa el campo telefono
+      if(!$subpass){
+         $form->setError($field, "* Telefono no ingresado");
+      }
+      else{
+         /* Arregla la contraseña, mirar duración*/
+         $subpass = stripslashes($subpass);
+         if(strlen($subpass) < 8 and strlen($subpass) > 0){
+            $form->setError($field, "* Telefono demaciado corto");
+         }
+         /* comprueba que el telefono no tenga letras */
+         else if(!preg_match("/^([0-9])+$/", ($subpass = trim($subpass)))){
+            $form->setError($field, "* Telefono no valido");
+         }
+      }
+      
+      /* Email error checking */
+      $field = "email";  //Use field name for email
+      if(!$subemail || strlen($subemail = trim($subemail)) == 0){
+         $form->setError($field, "* Email not entered");
+      }
+      else{
+         /* Check if valid email address */
+         $regex = "/^[_+a-z0-9-]+(\.[_+a-z0-9-]+)*"
+                 ."@[a-z0-9-]+(\.[a-z0-9-]{1,})*"
+                 ."\.([a-z]{2,}){1}$/";
+         if(!preg_match($regex,$subemail)){
+            $form->setError($field, "* Email invalid");
+         }
+         $subemail = stripslashes($subemail);
+      }
+
+      /* Errors exist, have user correct them */
+      if($form->num_errors > 0){
+         return 1;  //Errors with form
+      }
+      /* No errors, add the new account to the */
+      else{
+         if($database->addNewInfo($subuser, $subpass,$subemail, $subdireccion)){
+			return 0;  //New user added succesfully
+       }
+	   else{
+		return 2;  //Registration attempt failed
+       }
+    }
+   }
    
    function SessionAgentRegister($subuser, $subpass, $subemail){
 	  
@@ -613,50 +682,50 @@ class Session
     * automatically.
     */
    function editAccount($subcurpass, $subnewpass, $subemail){
-      global $database, $form;  //The database and form object
-      /* New password entered */
+      global $database, $form;  //La base de datos y el formulario
+      /* Nueva contraseña introducida */
       if($subnewpass){
-         /* Current Password error checking */
-         $field = "curpass";  //Use field name for current password
+         /* Comprueba errores de la contraseña actual */
+         $field = "curpass";  //usa el campo con nombre curpass
          if(!$subcurpass){
             $form->setError($field, "* Current Password not entered");
          }
          else{
-            /* Check if password too short or is not alphanumeric */
+            /* comprueba que la contraseña no sea alfanumerica */
             $subcurpass = stripslashes($subcurpass);
             if(strlen($subcurpass) < 4 ||
                !preg_match("/^([0-9a-z])+$/", ($subcurpass = trim($subcurpass)))){
                $form->setError($field, "* Current Password incorrect");
             }
-            /* Password entered is incorrect */
+            /* la contraseña ingresada es incorrecta */
             if($database->confirmUserPass($this->username,md5($subcurpass)) != 0){
                $form->setError($field, "* Current Password incorrect");
             }
          }
          
-         /* New Password error checking */
-         $field = "newpass";  //Use field name for new password
-         /* Spruce up password and check length*/
+         /* comprueba errores de la nueva contraseña */
+         $field = "newpass";  //usa el campo de nombre newpass
+         /* Arregla contraseña, y marca la longitud*/
          $subpass = stripslashes($subnewpass);
          if(strlen($subnewpass) < 4){
             $form->setError($field, "* New Password too short");
          }
-         /* Check if password is not alphanumeric */
+         /* Comprueba que la cotraseña no sea alfanumerica */
          else if(!preg_match("/^([0-9a-z])+$/", ($subnewpass = trim($subnewpass)))){
             $form->setError($field, "* New Password not alphanumeric");
          }
       }
-      /* Change password attempted */
+      /* intento de cambio de contraseña */
       else if($subcurpass){
-         /* New Password error reporting */
-         $field = "newpass";  //Use field name for new password
+         /* Nuevo informe de errores de contraseña */
+         $field = "newpass";  //Usa el campo con nombre newpass
          $form->setError($field, "* New Password not entered");
       }
       
-      /* Email error checking */
-      $field = "email";  //Use field name for email
+      /* comprueba errores de email */
+      $field = "email";  //usa el campo con nombre email
       if($subemail && strlen($subemail = trim($subemail)) > 0){
-         /* Check if valid email address */
+         /* comprueba si es un email valido */
          $regex = "/^[_+a-z0-9-]+(\.[_+a-z0-9-]+)*"
                  ."@[a-z0-9-]+(\.[a-z0-9-]{1,})*"
                  ."\.([a-z]{2,}){1}$/";
@@ -666,28 +735,27 @@ class Session
          $subemail = stripslashes($subemail);
       }
       
-      /* Errors exist, have user correct them */
+      /* Si existen errores, el usuario los arregla */
       if($form->num_errors > 0){
-         return false;  //Errors with form
+         return false;  //Errores con el formulario
       }
       
-      /* Update password since there were no errors */
+      /* Actualizar la contraseña ya que no había errores */
       if($subcurpass && $subnewpass){
          $database->updateUserField($this->username,"password",md5($subnewpass));
       }
       
-      /* Change Email */
+      /* cambio email */
       if($subemail){
          $database->updateUserField($this->username,"email",$subemail);
       }
       
-      /* Success! */
+      /* proceso realizado con exito */
       return true;
    }
    
    /**
-    * isAdmin - Returns true if currently logged in user is
-    * an administrator, false otherwise.
+    * isAdmin - Devuelve true si ha iniciado la sesión de usuario es un administrador, en caso contrario.
     */
    function isAdmin(){
       return ($this->userlevel == ADMIN_LEVEL ||
@@ -697,21 +765,22 @@ class Session
     function isMember(){
       return ($this->userlevel == AGENT_MEMBER_LEVEL);
    }
-   
+   function isBan(){
+      return ($this->userlevel == BANNED_LEVEL);
+   }
 
    /**
-    * generateRandID - Generates a string made up of randomized
-    * letters (lower and upper case) and digits and returns
-    * the md5 hash of it to be used as a userid.
+    * generateRandID -  Genera una cadena formada por letras aleatorios
+    * (más bajas y mayúsculas) y dígitos y devuelve el hash MD5 de que
+    * sea utilizado como un identificador de usuario.
     */
    function generateRandID(){
       return md5($this->generateRandStr(16));
    }
    
    /**
-    * generateRandStr - Generates a string made up of randomized
-    * letters (lower and upper case) and digits, the length
-    * is a specified parameter.
+    * generateRandStr - Genera una cadena formada por letras aleatorios
+    * (más bajas y mayúsculas) y dígitos, la longitud es un parámetro especificado.
     */
    function generateRandStr($length){
       $randstr = "";
@@ -731,13 +800,14 @@ class Session
 
 
 /**
- * Initialize session object - This must be initialized before
- * the form object because the form uses session variables,
- * which cannot be accessed unless the session has started.
+ * Initialize session object - Esta debe ser inicializado
+ * antes de que el objeto de formulario porque el formulario
+ * utiliza variables de sesión, que no se puede acceder a
+ * menos que la sesión ha comenzado.
  */
 $session = new Session;
 
-/* Initialize form object */
+/* Inicializar el objeto formulario */
 $form = new Form;
 
 ?>

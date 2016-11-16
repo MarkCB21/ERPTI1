@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-10-2016 a las 03:13:39
+-- Tiempo de generación: 26-10-2016 a las 12:53:47
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.5.38
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `erp`
+-- Base de datos: `erp-1`
 --
 
 -- --------------------------------------------------------
@@ -47,8 +47,7 @@ CREATE TABLE `active_users` (
 --
 
 INSERT INTO `active_users` (`username`, `timestamp`) VALUES
-('admin', 1476061847),
-('master1', 1476061248);
+('admin', 1477478475);
 
 -- --------------------------------------------------------
 
@@ -98,6 +97,14 @@ CREATE TABLE `banned_users` (
   `username` varchar(30) NOT NULL,
   `timestamp` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `banned_users`
+--
+
+INSERT INTO `banned_users` (`username`, `timestamp`) VALUES
+('master1', 1477281159),
+('master2', 1477321738);
 
 -- --------------------------------------------------------
 
@@ -264,19 +271,19 @@ INSERT INTO `inventario` (`ID_Inve`, `ID_Categoria`, `Nombre`, `Precio`, `Fecha`
 CREATE TABLE `login_usuarios` (
   `username` varchar(30) NOT NULL,
   `password` varchar(32) DEFAULT NULL,
+  `ID_D` varchar(30) NOT NULL,
   `userid` varchar(32) NOT NULL,
-  `userlevel` tinyint(1) UNSIGNED NOT NULL,
-  `email` varchar(50) DEFAULT NULL
+  `userlevel` tinyint(1) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `login_usuarios`
 --
 
-INSERT INTO `login_usuarios` (`username`, `password`, `userid`, `userlevel`, `email`) VALUES
-('admin', '21232f297a57a5a743894a0e4a801fc3', '477f2ac46843eee280b77f98bef1c347', 2, 'arman@3g.com'),
-('master2', '5b9de42bf3fa2534e0d7ae695b12aeab', '', 1, 'dnh11@outlook.es'),
-('prueba2', '96080775c113b0e5c3e32bdd26214aec', '', 1, 'asgsag@sagag.com');
+INSERT INTO `login_usuarios` (`username`, `password`, `ID_D`, `userid`, `userlevel`) VALUES
+('admin', '21232f297a57a5a743894a0e4a801fc3', '1', '86db41b4b7f14eb8cd51592a19f9a5f9', 2),
+('master3', '21232f297a57a5a743894a0e4a801fc3', '1', '0', 3),
+('prueba2', '96080775c113b0e5c3e32bdd26214aec', '1', '2398c14b430d45a899346f7c06a3ac90', 1);
 
 -- --------------------------------------------------------
 
@@ -485,7 +492,7 @@ ALTER TABLE `compra_poducto`
 -- AUTO_INCREMENT de la tabla `datos`
 --
 ALTER TABLE `datos`
-  MODIFY `ID_D` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_D` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `datos_bolefac`
 --
