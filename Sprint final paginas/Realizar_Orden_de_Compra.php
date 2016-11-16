@@ -9,11 +9,11 @@
 	<title>Realizar Orden de Compra</title>
 	<link href="../style/style.css" rel="stylesheet" type="text/css">
 	<?php
-		include "../Sprint2/tablas.php";
+		include "tablas.php";
 		for($i=0; $i < count($proveedores_ID_Prov); $i++){
 			echo "<p id='$proveedores_ID_Prov[$i]' hidden>\n";
 			for($j=0; $j < count($productos_ID_Prod); $j++){
-				echo "<option value='$productos_ID_Prod[$j]'>$productos_Nombre[$j]</option>\n";
+				echo "<option value='$productos_ID_Prod[$j]'>$productos_Descripcion[$j]</option>\n";
 			}
 			echo "</p>\n";
 		}
@@ -44,8 +44,8 @@
 					<label class="form-label" for="nombre_producto">Nombre Producto</label>
 					<select class="form-control" name='nombre_producto' id='nombre_producto'>
 						<?php
-						for ($i=0;$i < count($productos_Nombre);$i++){
-							echo "<option value='$productos_Nombre[$i]'>$productos_Nombre[$i]</option>";
+						for ($i=0;$i < count($productos_Descripcion);$i++){
+							echo "<option value='$productos_Descripcion[$i]'>$productos_Descripcion[$i]</option>";
 						}
 						?>
 					</select>
