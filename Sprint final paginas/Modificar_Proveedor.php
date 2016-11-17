@@ -1,5 +1,7 @@
 <?php include "tablas.php"; 
 
+include "aside.php";
+
 if(isset($_POST['ID_Prov']))
 {
 	$ID_Prov = $_POST['ID_Prov'];
@@ -12,14 +14,15 @@ else
 <!DOCTYPE html>
 <html>
 	<head>
-		<link href="../style/style.css" rel="stylesheet" type="text/css">
+		<link href="style/style.css" rel="stylesheet" type="text/css">
+		<link href="diseños/style.css" rel="stylesheet" type="text/css">
 		<title></title>
 		<script>
 
 		</script>
 	</head>
 	<body onload="">
-		<div class='cosa'>layout</div>
+		<div id='main'>
 		<div class='form-head'>Modificar Proveedor</div>
 		<div class='container'>
 			<form action="Programa_Modificar_Proveedor.php" method="POST">
@@ -78,6 +81,7 @@ else
 					<input class="btn" type="button" value="Cancelar" onclick="window.location='Modulo_Proveedores.php'">
 				</center>
 			</form>
+		</div>
 		</div>
 	</body>
 </html>
