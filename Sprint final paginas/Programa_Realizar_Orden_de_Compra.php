@@ -5,15 +5,15 @@
 	$Cantidad=$_GET['cantidad'];
 	$tipo_descuento=$_GET['tipo_descuento'];
 	$descuento=$_GET['descuento'];
-	$con="SELECT ID_Prod, Precio_Unitario as Precio FROM productos where Nombre='$Nombre_Producto' AND ID_Prov=$ID_Prov;";
+	$con="SELECT ID_Prod, Precio_Unitario as Precio FROM productos where descripcion='$Nombre_Producto' AND ID_Prov=$ID_Prov;";
 	$result=mysqli_query($link,$con);
 	$row=mysqli_fetch_object($result);
 	$precio=intval($row->Precio);
 	$ID_Prod=intval($row->ID_Prod);
-	$con="SELECT MAX(ID_Produc) AS ID_Produc FROM produc_com;";
+	$con="SELECT MAX(ID_Prod) AS ID_Prod FROM produc_com;";
 	$result = mysqli_query($link,$con);
 	$row = mysqli_fetch_object($result);
-	$arch = intval($row->ID_Produc) +1;
+	$arch = intval($row->ID_Prod) +1;
 	$url= "docs/ordcom$arch.txt";
 	$con = "SELECT MAX(ID_Archivo) AS ID_Archivo FROM archivo;";
 	$result = mysqli_query($link,$con);
