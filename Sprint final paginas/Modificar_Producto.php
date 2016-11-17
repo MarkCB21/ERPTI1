@@ -29,7 +29,11 @@ else
 				</div>
 				<div>
 					<label for='Medida' class='form-label'>Nombre Producto</label>
-					<input id='Medida' class='form-control' type='text' value='".$productos_Descripcion[intval($ID_Prod)-1]."' readonly>
+					<input id='Medida' class='form-control' type='text' value='".$productos_Nombre[intval($ID_Prod)-1]."' readonly>
+				</div>
+				<div>
+					<label for='Medida' class='form-label'>Medida</label>
+					<input id='Medida' name='Medida' class='form-control' type='text' value='".$productos_Medida[intval($ID_Prod)-1]."'>
 				</div>
 				<div>
 					<label for='Precio_Unitario' class='form-label'>Precio por Medida</label>
