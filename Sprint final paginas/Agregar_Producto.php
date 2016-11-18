@@ -34,16 +34,16 @@ include("aside.php");
 					</select>
 				</div>
 				<div>
-					<label for="Nombre" class="form-label">Nombre</label>
-					<input id="Nombre" name="Nombre" class="form-control" type="text">
+					<label for="Descripcion" class="form-label">Descripcion</label>
+					<input id="Descripcion" name="Descripcion" class="form-control" type="text">
 				</div>
 				<div>
-					<label for="Medida" class="form-label">Medida</label>
-					<input id="Medida" name="Medida" class="form-control" type="text">
-				</div>
-				<div>
-					<label for="Precio_Unitario" class="form-label">Precio por Medida</label>
+					<label for="Precio_Unitario" class="form-label">Precio Unitario</label>
 					<input id="Precio_Unitario" name="Precio_Unitario" class="form-control" type="text">
+				</div>
+				<div>
+					<label for="Fecha_Agregado" class="form-label">Fecha</label>
+					<input id="Fecha_Agregado" name="Fecha_Agregado" class="form-control" type="date" value="">
 				</div>
 				<center>
 					<input class="btn" type="submit" value="Crear">
