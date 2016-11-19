@@ -1,13 +1,12 @@
 <!DOCTYPE HTML>
-<?php
-	$link = mysqli_connect("localhost","root", "");
-	mysqli_select_db($link,"erp-1");
-?>
+
 <html>
 	<head>
 	<meta charset='utf-8'>
 	<title>Realizar Orden de Compra</title>
-	<link href="../style/style.css" rel="stylesheet" type="text/css">
+	<link href="style/style.css" rel="stylesheet" type="text/css">
+	<link href="diseños/style.css" rel="stylesheet" type="text/css">
+	<?php include "aside.php"; ?>
 	<?php
 		include "tablas.php";
 		for($i=0; $i < count($proveedores_ID_Prov); $i++){
