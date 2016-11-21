@@ -1,0 +1,13 @@
+authenticate.php = verifica si el usuario está en la bd
+categoria.js = ejecuta los comandos de javascript que redirige segun el boton que se presiona de la pag list_cat.php, enviando a delete_cat.php o edit_cat.php
+create_cat.php= crea categoria
+create_inv.php= crea producto en el inventario
+data.js = ejecuta los comandos de javascript que redirige segun el boton que se presiona de la pag dato.php, enviando a delete_data.php o edit_data.php
+delete_"x".php=elimina el dato,categoria,inventario o usuario seleccionado
+edit_"x".php=edita el dato,categoria,inventario o usuario seleccionado
+list_"x".php=lista todos los datos,categorias,inventarios o usuarios.
+inv.js= ejecuta los comandos de javascript que redirige segun el boton que se presiona de la pag list_inv.php, enviando a delete_inv.php o edit_inv.php
+member_register.php=crea usuarios
+users.js= ejecuta los comandos de javascript que redirige segun el boton que se presiona de la pag list_users.php, enviando a delete_user.php o edit_user.php
+database_connection.php= conexion a bd para lo demas (mysqli)
+database-config.php= conexion a bd para el login(PDO)
