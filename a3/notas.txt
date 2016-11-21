@@ -1,6 +1,0 @@
-php que no estan implementados en la pagina(no sabia donde ponerlos), pero que funcionan correctamente:
-list_data=lista datos (utiliza edit_data para editar y delete_data para eliminar)
-list_cat=lista categoria (utiliza edit_cat para editar y delete_cat para eliminar)
-datos=crea datos en la bd
-create_cat=crea categorias en la bd
-create_inv= crea productos de inventario en la bd
