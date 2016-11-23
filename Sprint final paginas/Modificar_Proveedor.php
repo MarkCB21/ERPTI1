@@ -23,7 +23,7 @@ else
 	</head>
 	<body onload="">
 		<div id='main'>
-		<div class='form-head'>Modificar Proveedor</div>
+		<div class='form-head'>Modificar Proveedor</div><div class='return' onclick='history.back(1)'>Volver</div>
 		<div class='container'>
 			<form action="Programa_Modificar_Proveedor.php" method="POST">
 				<?php

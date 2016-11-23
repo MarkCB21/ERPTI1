@@ -6,7 +6,7 @@
 	function redi(row)
 	{
 		frm = document.getElementById('frm')
-		frm.innerHTML = "<input name='ID_Produc' value='"+row.id+"' hidden>"
+		frm.innerHTML = "<input name='ID_Compra' value='"+row.id+"' hidden>"
 		frm.submit()
 	}
 	function show(string)
@@ -16,24 +16,27 @@
 </script>
 <body>
 <?php
+$option = ["No","Si"];
 include "tablas.php";
 echo "<div id='main'>";
-echo "<div class='form-head'>Modulo Orden de Compra</div>";
+echo "<div class='form-head'>Modulo Orden de Compra</div><div class='return' onclick=\"window.location='inicio.php'\">Volver</div>";
 echo "<div class='container'>";
-echo "<table class='table-fill'> \n";
-echo "<thead onclick=\"window.location = 'Lista_Orden_de_Compra.php'\">
-<th class='text-left'>ID_Compraproducto</th>
-<th class='text-left'>Producto</th>
-<th class='text-left'>Cantidad</th>
+echo "<table class='table-fill' style='width:600px;'> \n";
+echo "<thead>
+<th class='text-left'>ID Compra</th>
+<th class='text-left'>Fecha de Emision</th>
+<th class='text-left'>Documento</th>
+<th class='text-left'>Anulado</th>
 
 </thead>\n";
 echo "<tbody class='table-hover'>\n";
-for($i=0;$i<count($produc_com_ID_Compraproducto);$i++)
+for($i=0;$i<count($compra_producto_ID_Compra);$i++)
 {
-	echo "<tr onclick=redi(this) id='$produc_com_ID_Compraproducto[$i]'>
-	<td class='text-right'>$produc_com_ID_Compraproducto[$i]</td>
-	<td class='text-left'>".$productos_Descripcion[intval($produc_com_ID_Prod[$i])-1]."</td>
-	<td class='text-right'>$produc_com_Cantidad[$i]</td>
+	echo "<tr onclick=redi(this) id='$compra_producto_ID_Compra[$i]'>
+	<td class='text-right'>$compra_producto_ID_Compra[$i]</td>
+	<td class='text-center'>$compra_producto_Fecha_emision[$i]</td>
+	<td class='text-right'>$compra_producto_ID_Doc[$i]</td>
+	<td class='text-center'>".$option[$compra_producto_anulado[$i]]."
 	</tr> \n"; 
 }
 echo "<tbody>\n</table>\n";

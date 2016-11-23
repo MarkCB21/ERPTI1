@@ -9,65 +9,82 @@
 	<?php include "aside.php"; ?>
 	<?php
 		include "tablas.php";
-		for($i=0; $i < count($proveedores_ID_Prov); $i++){
-			echo "<p id='$proveedores_ID_Prov[$i]' hidden>\n";
-			for($j=0; $j < count($productos_ID_Prod); $j++){
-				echo "<option value='$productos_ID_Prod[$j]'>$productos_Descripcion[$j]</option>\n";
+		for($i = 0; $i < count($proveedores_ID_Prov); $i++)
+		{
+			echo "<select id=\"Prod_Prov_$i\" hidden>";
+			for($j = 0; $j < count($productos_ID_Prod); $j++)
+			{
+				if($productos_ID_Prov[$j] == $i+1)
+				{
+					echo "<option value=\"$productos_ID_Prod[$j]\">$productos_Descripcion[$j]</option>";
+				}
 			}
-			echo "</p>\n";
+			echo "</select>";
 		}
 	?>
 	<script type="text/javascript">
-	function actdiv()
+	count = 0
+
+	function addprod()
 	{
-		document.getElementById('nombre_producto').innerHTML = document.getElementById(document.getElementById('nombre_compania').value).innerHTML
+		count++
+		Orden = document.getElementById('Orden')
+		Prov = "<td class=\"text-center\"><select style=\"background-color:transparent;border:none;\" id=\"ID_Prov_"+count+"\" name=\"ID_Prov_"+count+"\" onchange=\"actprod('"+count+"');\">" <?php for ($i=0; $i < count($proveedores_ID_Prov); $i++) {	echo " + \"<option value='$proveedores_ID_Prov[$i]'>$proveedores_Nombre_Compania[$i]</option>\""; } ?> + "</select></td>"
+		Prod = "<td class=\"text-center\"><select style=\"background-color:transparent;border:none;\" id=\"ID_Prod_"+count+"\" name=\"ID_Prod_"+count+"\" onchange=\"calprod('"+count+"');\"></select></td>"
+		Cant = "<td class=\"text-center\"><input style=\"background-color:transparent;border:none;\" id=\"Cantidad_"+count+"\" name=\"Cantidad_"+count+"\" onchange=\"calprod('"+count+"');\" type=\"number\" min='1' value='1'></td>"
+		Desc_100 = "<td class=\"text-center\"><input style=\"background-color:transparent;border:none;\" id=\"Descuento_Porcentaje_"+count+"\" name=\"Descuento_Porcentaje_"+count+"\" onchange=\"calprod('"+count+"');\" type=\"number\" min='0' max='100' value='0'></td>"
+		Desc = "<td class=\"text-center\"><input style=\"background-color:transparent;border:none;\" id=\"Descuento_"+count+"\" name=\"Descuento_"+count+"\" onchange=\"calprod('"+count+"');\" type=\"number\" min='0' value='0'></td>"
+		Total = "<td calss=\"text-center\" id=\"Total_"+count+"\" name=\"Total_"+count+"\"></td"
+
+		Orden.innerHTML = Orden.innerHTML + "<tr>" + Prov + Prod + Cant + Desc_100 + Desc + Total + "</tr>"
+		actprod(count)
+	}
+
+	function actprod(id)
+	{
+		select_Prov = document.getElementById("ID_Prov_" + id)
+		Prov_Index = select_Prov.value - 1
+		select_Prod = document.getElementById("ID_Prod_" + id)
+		select_Prod.innerHTML = document.getElementById("Prod_Prov_" + Prov_Index).innerHTML
+		calprod(id)
+	}
+
+	function calprod(id)
+	{
+		Prod_Precio = [<?php echo join(',',$productos_Precio_Unitario); ?>]
+		select_Prod = document.getElementById("ID_Prod_" + id)
+		Prod_Index = select_Prod.value - 1
+		Cantidad = document.getElementById("Cantidad_" + id).value
+		Precio = Prod_Precio[parseInt(Prod_Index)]
+		Descuento_Porcentaje = document.getElementById("Descuento_Porcentaje_" + id).value
+		Descuento = document.getElementById("Descuento_" + id).value
+		Total_Bruto = Precio * Cantidad
+		Total = Total_Bruto - (Total_Bruto * Descuento_Porcentaje / 100) - Descuento
+		document.getElementById("Total_" + id).innerHTML = parseInt(Total)
 	}
 	</script>
 	</head>
-	<body onload="actdiv()">
-		<div class='cosa'>layout</div>
-		<div class='form-head'>Realizar Orden de Compra</div>
-		<div class='container'>
-			<form action="Programa_Realizar_Orden_de_Compra.php">
-				<div>
-					<label for="ID_Prov" class="form-label">Proveedor</label>
-					<select id="ID_Prov" name="ID_Prov" class="form-control">
-					<?php 
-					for ($i=0; $i < count($proveedores_ID_Prov); $i++) { 
-						echo "<option value='$proveedores_ID_Prov[$i]'>$proveedores_Nombre_Compania[$i]</option>";
-					}
-					?>
-					</select>
-				</div>
-				<div>
-					<label class="form-label" for="nombre_producto">Nombre Producto</label>
-					<select class="form-control" name='nombre_producto' id='nombre_producto'>
-						<?php
-						for ($i=0;$i < count($productos_Descripcion);$i++){
-							echo "<option value='$productos_Descripcion[$i]'>$productos_Descripcion[$i]</option>";
-						}
-						?>
-					</select>
-				</div>
-				<div>
-					<label class="form-label" for="cantidad">Cantidad</label>
-					<input class="form-control" type="number" name="cantidad">
-				<div>
-					<label class="form-label" for="tipo_descuento">Tipo Descuento</label>
-					<select class="form-control" name='tipo_descuento' id='tipo_descuento'>
-						<option value="descuento_%">Descuento %</option>
-						<option value="descuento_$">Descuento $</option>
-					</select>
-				</div>
-				<div>
-					<label class="form-label" for="descuento">Descuento</label>
-					<input class="form-control" type="number" name="descuento">
-				</div>
-				<center>
-					<input class="btn" type="submit" value="Enviar">
-					<input class="btn" type="button" value="Cancelar" onclick="window.location='Modulo_Orden_de_Compra.php'">
-				</center>
-			</form>
+	<body onload="addprod()">
+		<div id='main'>
+			<div class='form-head'>Realizar Orden de Compra</div><div class='return' onclick="window.location='Modulo_Orden_de_Compra.php'">Volver</div>
+			<div class='container'>
+				<form action="Programa_Realizar_Orden_de_Compra.php" method="POST">
+					<table class="table-fill" style="float:none">
+						<thead>
+							<th>Proveedor</th>
+							<th>Producto</th>
+							<th>Cantidad</th>
+							<th>Descuento %</th>
+							<th>Descuento $</th>
+							<th>Total $</th>
+						</thead>
+						<tbody id="Orden">
+						</tbody>	
+					</table>
+					<input type="button" class="modulo" value="Add Prod" onclick="addprod()">
+					<input type="submit" class="modulo" value="Enviar">
+				</form>
+			</div>
 		</div>
 	</body>
 </html>

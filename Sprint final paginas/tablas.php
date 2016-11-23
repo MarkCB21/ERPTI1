@@ -227,6 +227,22 @@ if ($result = mysqli_query($link,$con))
 	mysqli_free_result($result);
 }
 
+// Tabla total_compras
+$con = "SELECT * FROM total_compras";
+if ($result = mysqli_query($link, $con))
+{
+	$total_compras_ID_total_compras = [];
+	$total_compras_Total_Iva = [];
+	$total_compras_Total_sin_iva = [];
+	while ($row = mysqli_fetch_object($result))
+	{
+		array_push($total_compras_ID_total_compras, $row->ID_total_compras);
+		array_push($total_compras_Total_Iva, $row->Total_Iva);
+		array_push($total_compras_Total_sin_iva, $row->Total_sin_iva);
+	}
+	mysqli_free_result($result);
+}
+
 // Tabla compra_producto
 $con = "SELECT * FROM compra_producto";
 if ($result = mysqli_query($link,$con))

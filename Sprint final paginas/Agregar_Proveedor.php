@@ -8,7 +8,7 @@ include "aside.php";?>
 	</head>
 	<body>
 		<div id="main">
-		<div class='form-head'>Agregar Proveedor</div>
+		<div class='form-head'>Agregar Proveedor</div><div class='return' onclick="window.location='Modulo_Proveedores.php'">Volver</div>
 		<div class='container'>
 			<form action="Programa_Agregar_Proveedor.php" method="POST">
 				<div>

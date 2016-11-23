@@ -10,7 +10,7 @@ include("aside.php");
 	</head>
 	<body>
 		<div id ="main">
-		<div class='form-head'>Agregar Producto</div>
+		<div class='form-head'>Agregar Producto</div><div class='return' onclick="window.location='Modulo_Productos.php'">Volver</div>
 		<div class='container'>
 			<form action="Programa_Agregar_Producto.php" method="POST">
 				<div>
