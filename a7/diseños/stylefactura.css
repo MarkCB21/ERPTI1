@@ -1,0 +1,40 @@
+#factura{
+	border:1px solid black; 
+	width: 800px;
+	margin: auto;
+	margin-top: 10px;
+	background-color:white;
+}
+#datosempresa{
+	width:400px;
+	height:200px; 
+	float: left;
+}
+
+#logo_factura{
+	float: left;
+}
+#datos{
+	float: left;
+	margin-top: 20px;
+}
+#id_fact{
+	border:2px solid red; 
+	width: 250px;
+	height: 120px; 
+	float: left;
+	margin: 20px 20px 0px 100px; 
+	text-align:center;
+	padding-top:30px;
+}
+#DatosCompador{
+	width:90%;height: 120px;
+	float:left; 
+	margin-top: 20px; 
+	margin-left: 35px;
+	padding: 10px 0px 10px 0px;
+}
+#articulos{
+	border:1px solid red;
+
+}
